@@ -1,0 +1,3 @@
+[submodule "SlimaneHTTP"]
+	path = SlimaneHTTP
+	url = https://github.com/noppoMan/SlimaneHTTP.git
