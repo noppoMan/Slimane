@@ -15,36 +15,37 @@ public typealias Middleware = (Request, Response, MiddlewareChain) throws -> Voi
 public typealias Route = (Request, Response) throws -> Void
 
 public struct HTTPServerOption {
-    public var keepAliveTimeout: UInt = 0
+    public var keepAliveTimeout: UInt = 75
     public var setNoDelay = false
 }
 
 public class Slimane {
     // Aliases
     public var showPowerdedBy = true
-    
+
     public let httpServerOption = HTTPServerOption()
-    
+
     public var context: [String: Any] = [:]
-    
+
     // Stacks
     var middlewareStack = [MiddlewareStack]()
     var routerStack = [RouteStack]()
-    
-    
+
+
     // Error Handler
     public var errorHandler: ErrorHandler = DefaultErrorHandler()
-    
+
     public init(){}
 }
 
 public struct DefaultErrorHandler: ErrorHandler {
     public func handle(req req: Request, res: Response, error: ErrorType) {
-        Logger.fatal(error)
         switch(error) {
         case Error.RouteNotFound(let path):
+            Logger.error(error)
             res.status(.NotFound).write("\(path) is not found.")
         default:
+            Logger.fatal(error)
             res.status(.BadRequest).write("\(error)")
         }
     }
