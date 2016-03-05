@@ -1,24 +1,16 @@
 # Slimane
 An express inspired web framework for swift
 
-## Features
-- [x] UrlRouting
-- [x] Middlewares
-- [x] Cookie and Session
-- [x] Static assets serving
-- [x] Multi process support
-- [x] Filters
-- [ ] Documents
-- [ ] Tests
-
-## API Reference
-Full Api Reference is [here](http://rawgit.com/noppoMan/Slimane/develop/docs/api/index.html)
+### A Work In Progress
+Slimane is currently in active development.  
+Feel free to contribute and pull requests are welcome!
 
 ## Table of Contents
 
 * [Getting Started](#getting-started)
-  * [A Work in Progress](#a-work-in-progress)
   * [Install Guide](#install-guide)
+  * [Documentation](#documentation)
+  * [Example Project](#example-project)
 * [Usage](#usage)
 * [Routing](#routing)
 * [Middleware](#middleware)
@@ -44,14 +36,17 @@ Full Api Reference is [here](http://rawgit.com/noppoMan/Slimane/develop/docs/api
 * Deal with Database/Other Data Store
 * Deploying
 
-## A Work In Progress
-Slimane is currently in active development. So the Design might be changed suddenly.
+## Getting Started
 
-Feel free to contribute and pull requests are welcome!
 
-## Install Guide
-[Here](https://github.com/noppoMan/Slimane/blob/develop/docs/install_guide.md) are install guides for each operating systems
+### Install Guide
+[Here is install guides for each operating systems](https://github.com/noppoMan/Slimane/wiki/Install-Guide)
 
+### Documentation
+[Here is Documentation for Slimane.](https://github.com/noppoMan/Slimane/wiki)
+
+### Example Project
+[Check out the Example Project to start development with Slimane.](https://github.com/noppoMan/Slimane/wiki#example-project)
 
 ## Usage
 The usage of Slimane is similar with [express](https://github.com/expressjs/express)  
@@ -63,7 +58,16 @@ import Slimane
 let app = Slimane()
 
 app.use(BodyParser())
+
 app.use(CookieParser())
+
+app.use(SessionHandler(
+    SessionConfig(
+        secret: "secret",
+        expires: Time(tz: .UTC).addDay(7).rfc822
+    )
+))
+
 app.use(StaticFileServe())
 
 
@@ -72,7 +76,7 @@ app.get("/") { req, res in
 }
 
 // Bind address, port and listen http server
-app.listen(3000)
+try! app.listen(host: "127.0.0.1", port: 3000)
 ```
 
 ## Routing
@@ -297,9 +301,7 @@ Set response header with res.setHeader method
 
 ```swift
 app.use { req, res, next in
-
   res.setHeader("Connection", "Keep-Alive")
-
 }
 ```
 
@@ -310,9 +312,7 @@ Set response status with res.status method
 
 ```swift
 app.use { req, res, next in
-
   res.status(.OK).write("foobar")
-
 }
 ```
 
@@ -443,7 +443,7 @@ if Cluster.isMaster {
    }
 
    // Need to bind address and listen server on parent
-   Slimane().listen(host: "0.0.0.0", port: 3000)
+   try! Slimane().listen(host: "0.0.0.0", port: 3000)
 
 } else {
   let app = Slimane()
@@ -453,7 +453,7 @@ if Cluster.isMaster {
   }
 
    // Not need bind, cause child processes use parent established connection with IPC.
-  app.listen()
+  try! app.listen()
 }
 ```
 
