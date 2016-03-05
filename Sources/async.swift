@@ -5,6 +5,7 @@
 //  Created by Yuki Takei on 1/11/16.
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
+
 internal typealias SeriesCB = ((ErrorType?) -> ()) -> ()
 
 internal func seriesTask(tasks: [SeriesCB], _ completion: (ErrorType?) -> Void) {

@@ -15,7 +15,7 @@ extension Request {
 }
 
 public struct CookieParser:  MiddlewareType {
-    let secret: String
+    let secret: String  
     
     public init(secret: String){
         self.secret = secret
@@ -26,12 +26,13 @@ public struct CookieParser:  MiddlewareType {
             return next(nil)
         }
         
-        let cookie = CookieParser.parse(cookieStr)
-        req.context["cookie"] = cookie
-        
-        req.context["signedCookie"] = CookieParser.signedCookies(cookie, secret: self.secret)
-    
-        next(nil)
+        Process.qwork(onThread: {
+            let cookie = CookieParser.parse(cookieStr)
+            req.context["cookie"] = cookie
+            req.context["signedCookie"] = CookieParser.signedCookies(cookie, secret: self.secret)
+        }, onFinish: {
+            next(nil)
+        })
     }
     
     public static func parse(cookieStr: String) -> [String: String] {
@@ -66,30 +67,32 @@ extension CookieParser {
         return signedCookie
     }
     
+    public static func decode(val: String) throws -> String {
+        let str = val.substringWithRange(Range<String.Index>(start: val.startIndex.advancedBy(2), end: val.endIndex))
+        let searchCharacter: Character = "."
+        guard let index = str.lowercaseString.characters.indexOf(searchCharacter) else {
+            throw Error.InvalidArgument("Invalid cookie value")
+        }
+        return str.substringWithRange(Range<String.Index>(start: str.startIndex, end: index))
+    }
+    
     public static func signedCookie(val: String, secret: String) throws -> String? {
         let signedPrefix = val.substringWithRange(Range<String.Index>(start: val.startIndex, end: val.startIndex.advancedBy(2)))
         if signedPrefix != "s:" {
             return nil
         }
         
-        let sessionId = val.substringWithRange(Range<String.Index>(start: val.startIndex.advancedBy(2), end: val.endIndex))
-        return try unsignSync(sessionId, secret: secret)
+        return try unsignSync(val, secret: secret)
     }
     
     public static func signSync(val: String, secret: String) throws -> String {
         let encrypted = try Crypto(.SHA256).hashSync(secret)
         
-        return "\(val).\(encrypted.toString(.Base64)!)"
+        return "s:\(val).\(encrypted.toString(.Base64)!)"
     }
     
     public static func unsignSync(val: String, secret: String) throws -> String {
-        let searchCharacter: Character = "."
-        
-        guard let index = val.lowercaseString.characters.indexOf(searchCharacter) else {
-            throw Error.InvalidArgument("Invalid session value")
-        }
-        
-        let str = val.substringWithRange(Range<String.Index>(start: val.startIndex, end: index))
+        let str = try decode(val)
         
         let sha1 = Crypto(.SHA1)
         let mac = try signSync(str, secret: secret)

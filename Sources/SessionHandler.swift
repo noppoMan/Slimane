@@ -36,32 +36,52 @@ public final class SessionHandler: MiddlewareType {
     public func handleRequest(req: Request, res: Response, next: MiddlewareChain) {
         req.context["session"] = session
         
-        if shouldSetCookie(req) {
-            do {
-                let cookie = try initCookieForSet()
-                res.setHeader("Set-Cookie", cookie.serialize())
-                let signedCookies = CookieParser.signedCookies(cookie.values, secret: self.session.secret)
-                req.context["sessionId"] = signedCookies[self.session.keyName]
-                next(nil)
-            } catch {
-                next(error)
+        
+        var err: ErrorType? = nil
+        
+        // other thread
+        let onThread = { [unowned self] in
+            if self.shouldSetCookie(req) {
+                do {
+                    let cookie = try self.initCookieForSet()
+                    res.setHeader("Set-Cookie", cookie.serialize())
+                    let signedCookies = CookieParser.signedCookies(cookie.values, secret: self.session.secret)
+                    req.context["sessionId"] = signedCookies[self.session.keyName]
+                } catch {
+                    err = error
+                }
             }
-            return
         }
         
-        guard let signedCookie = req.context["signedCookie"] as? [String: String], let sessionId = signedCookie[session.keyName] else {
-            return next(nil)
+        // main loop
+        let onFinish = { [unowned self] in
+            if let e = err {
+                next(e)
+                return
+            }
+            
+            if res.getHeader("set-cookie") != nil {
+                next(nil)
+                return
+            }
+            
+            guard let signedCookie = req.context["signedCookie"] as? [String: String], let sessionId = signedCookie[self.session.keyName] else {
+                next(nil)
+                return
+            }
+            
+            req.context["sessionId"] = sessionId
+            
+            req.appendAfterWriteCallback({ _ in
+                self.session.store(req.sessionId!) {}
+            })
+            
+            self.session.reload(sessionId) {
+                next(nil)
+            }
         }
         
-        req.context["sessionId"] = sessionId
-        
-        req.appendAfterWriteCallback({ [unowned self] _ in
-            self.session.store(req.sessionId!) {}
-        })
-        
-        session.reload(sessionId) {
-            next(nil)
-        }
+        Process.qwork(onThread: onThread, onFinish: onFinish)
     }
     
     private func shouldSetCookie(req: Request) -> Bool {
@@ -70,10 +90,11 @@ public final class SessionHandler: MiddlewareType {
         }
         
         do {
-            let result = try CookieParser.signedCookie(cookieValue, secret: self.session.secret)
-            return result != cookieValue
+            let dec = try CookieParser.signedCookie(cookieValue, secret: self.session.secret)
+            let sesId = try CookieParser.decode(cookieValue)
+            return dec != sesId
         } catch {
-            return false
+            return true
         }
     }
     
