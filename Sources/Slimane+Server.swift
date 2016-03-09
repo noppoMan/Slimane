@@ -52,19 +52,20 @@ extension Slimane {
     
     private func dispatch(req: Request, _ res: Response){
         beforeResponse(req, res)
-        
-        let middlewares: [SeriesCB] = self.middlewareStack.map { stack in
+        var middlewares: [SeriesCB]? = nil
+        middlewares = self.middlewareStack.map { stack in
             return { next in
                 do {
                     try stack.handler.handleRequest(req, res: res, next: next)
-                } catch let err {
-                    next(err)
+                } catch {
+                    next(error)
                 }
             }
         }
         
         // TODO Investigate memory leak possibility
-        seriesTask(middlewares) { [unowned self] err in
+        seriesTask(middlewares!) { [unowned self] err in
+            middlewares = nil
             if let e = err {
                 return self.errorHandler.handle(req: req, res: res, error: e)
             }

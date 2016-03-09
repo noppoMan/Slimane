@@ -36,7 +36,6 @@ public final class SessionHandler: MiddlewareType {
     public func handleRequest(req: Request, res: Response, next: MiddlewareChain) {
         req.context["session"] = session
         
-        
         var err: ErrorType? = nil
         
         // other thread
@@ -65,14 +64,14 @@ public final class SessionHandler: MiddlewareType {
                 return
             }
             
-            guard let signedCookie = req.context["signedCookie"] as? [String: String], let sessionId = signedCookie[self.session.keyName] else {
+            guard let sessionId = (req.context["signedCookie"] as? [String: String])?[self.session.keyName] else {
                 next(nil)
                 return
             }
             
             req.context["sessionId"] = sessionId
             
-            req.appendAfterWriteCallback({ _ in
+            req.appendAfterWriteCallback({ [unowned req] _ in
                 self.session.store(req.sessionId!) {}
             })
             

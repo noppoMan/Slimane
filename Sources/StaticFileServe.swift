@@ -28,22 +28,14 @@ public struct StaticFileServe: MiddlewareType {
             return next(nil)
         }
         
-        Fs.readFile(root + path) { data in
+        FS.readFile(root + path) { data in
             switch(data) {
             case .Success(let buffer):
                 res.setHeader("Content-Type", MimeType.mimeTypeFromExtension(ext))
                 res.write(buffer)
                 
             case .Error(let err):
-                switch(err){
-                case SuvError.UVError(let code):
-                    if(SuvError.UVError(code: code).errorno == UV_ENOENT) {
-                        Logger.error(err)
-                        res.status(.NotFound).write("\(path) is not found")
-                    }
-                default:
-                    next(err)
-                }
+                next(err)
             }
         }
     }
