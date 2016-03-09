@@ -1,7 +1,7 @@
 # Slimane
 An express inspired web framework for swift
 
-<img src="https://raw.githubusercontent.com/noppoMan/Slimane/develop/logo/Slimane_logo.jpg" width=250>
+<img src="https://raw.githubusercontent.com/noppoMan/Slimane/master/logo/Slimane_logo.jpg" width=250>
 
 
 ### A Work In Progress
