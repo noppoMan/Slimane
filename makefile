@@ -1,7 +1,7 @@
-CLibUv=CLibUv-0.1.0
-COpenSSL=COpenSSL-0.1.0
-HTTPParser=HTTPParser-0.1.2
-CURIParser=CURIParser-0.1.0
+CLibUv=CLibUv-*
+COpenSSL=COpenSSL-*
+HTTPParser=HTTPParser-*
+CURIParser=CURIParser-*
 
 BUILDOPTS=-Xlinker -L/usr/lib \
 	-Xcc -IPackages/$(CLibUv) \
@@ -19,7 +19,7 @@ OS := $(shell uname)
 ifeq ($(OS),Darwin)
   SWIFTC=xcrun -sdk macosx swiftc
 	BUILDOPTS=-Xlinker -L/usr/local/lib -Xcc -I/usr/local/include
-	COpenSSL=COpenSSL-OSX-0.1.0
+	COpenSSL=COpenSSL-OSX-*
 endif
 
 all: release
