@@ -66,7 +66,7 @@ public final class Session {
     }
     
     public func reload(sesId: String, completion: () -> Void){
-        self.conf.store.reload(sesId, completion: { values in
+        self.conf.store.reload(sesId, completion: { [unowned self] values in
             if let values = values {
                 self.values = values
             }

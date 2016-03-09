@@ -15,7 +15,7 @@ public typealias Middleware = (Request, Response, MiddlewareChain) throws -> Voi
 public typealias Route = (Request, Response) throws -> Void
 
 public struct HTTPServerOption {
-    public var keepAliveTimeout: UInt = 75
+    public var keepAliveTimeout: UInt = 15
     public var setNoDelay = false
 }
 
