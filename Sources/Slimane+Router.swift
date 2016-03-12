@@ -6,6 +6,9 @@
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
 
+import SlimaneMiddleware
+import SlimaneLogger
+
 // router
 extension Slimane {
     public func use(handler: MiddlewareType) {

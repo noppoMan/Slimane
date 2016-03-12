@@ -6,6 +6,8 @@
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
 
+import SlimaneMiddleware
+
 private struct FunctionHandlerWrapper: MiddlewareType {
     var handler: (Request, Response, MiddlewareChain) throws -> ()
     

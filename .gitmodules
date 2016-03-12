@@ -1,3 +1,3 @@
-[submodule "SlimaneHTTP"]
-	path = SlimaneHTTP
-	url = https://github.com/noppoMan/SlimaneHTTP.git
+[submodule "SlimaneMiddleware"]
+	path = SlimaneMiddleware
+	url = https://github.com/noppoMan/SlimaneMiddleware.git
