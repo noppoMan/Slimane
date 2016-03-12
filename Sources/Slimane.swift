@@ -7,6 +7,8 @@
 //
 
 import SlimaneHTTP
+import SlimaneMiddleware
+import SlimaneLogger
 
 public typealias Request = HTTPRequest
 public typealias Response = HTTPResponse

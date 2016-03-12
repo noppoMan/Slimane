@@ -6,8 +6,11 @@
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
 
-import SlimaneHTTP
 import Suv
+import SlimaneHTTP
+import SlimaneMiddleware
+import SlimaneLogger
+
 
 extension Slimane {
     public func listen(host host: String = "0.0.0.0", port: Int = 3000) throws {
@@ -56,7 +59,13 @@ extension Slimane {
         middlewares = self.middlewareStack.map { stack in
             return { next in
                 do {
-                    try stack.handler.handleRequest(req, res: res, next: next)
+                    try stack.handler.handleRequest(req, res: res) { result in
+                        if case .Error(let err) = result {
+                            next(err)
+                        } else {
+                            next(nil)
+                        }
+                    }
                 } catch {
                     next(error)
                 }

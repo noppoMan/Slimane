@@ -11,29 +11,31 @@
 		B6235B3E1C6A3A4B00A8B9DE /* Slimane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6235B331C6A3A4B00A8B9DE /* Slimane.framework */; };
 		B6235B431C6A3A4B00A8B9DE /* SlimaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6235B421C6A3A4B00A8B9DE /* SlimaneTests.swift */; };
 		B6F044151C6B070800102C2E /* async.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F043FF1C6B070800102C2E /* async.swift */; };
-		B6F044161C6B070800102C2E /* BodyParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044001C6B070800102C2E /* BodyParser.swift */; };
-		B6F044171C6B070800102C2E /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044011C6B070800102C2E /* Cookie.swift */; };
-		B6F044181C6B070800102C2E /* CookieParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044021C6B070800102C2E /* CookieParser.swift */; };
 		B6F044191C6B070800102C2E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044031C6B070800102C2E /* Error.swift */; };
 		B6F0441A1C6B070800102C2E /* Errorhandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044041C6B070800102C2E /* Errorhandler.swift */; };
-		B6F0441B1C6B070800102C2E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044051C6B070800102C2E /* Logger.swift */; };
 		B6F0441C1C6B070800102C2E /* MiddlewareStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044061C6B070800102C2E /* MiddlewareStack.swift */; };
-		B6F0441D1C6B070800102C2E /* MiddlewareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044071C6B070800102C2E /* MiddlewareType.swift */; };
-		B6F0441E1C6B070800102C2E /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044081C6B070800102C2E /* MimeType.swift */; };
-		B6F0441F1C6B070800102C2E /* Request+Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044091C6B070800102C2E /* Request+Callbacks.swift */; };
 		B6F044201C6B070800102C2E /* RouteStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0440A1C6B070800102C2E /* RouteStack.swift */; };
 		B6F044211C6B070800102C2E /* RouteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0440B1C6B070800102C2E /* RouteType.swift */; };
-		B6F044221C6B070800102C2E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0440C1C6B070800102C2E /* Session.swift */; };
-		B6F044231C6B070800102C2E /* SessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0440D1C6B070800102C2E /* SessionHandler.swift */; };
-		B6F044241C6B070800102C2E /* SessionMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0440E1C6B070800102C2E /* SessionMemoryStore.swift */; };
-		B6F044251C6B070800102C2E /* SessionStoreType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0440F1C6B070800102C2E /* SessionStoreType.swift */; };
 		B6F044261C6B070800102C2E /* Slimane+Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044101C6B070800102C2E /* Slimane+Router.swift */; };
 		B6F044271C6B070800102C2E /* Slimane+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044111C6B070800102C2E /* Slimane+Server.swift */; };
 		B6F044291C6B070800102C2E /* Slimane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044131C6B070800102C2E /* Slimane.swift */; };
-		B6F0442A1C6B070800102C2E /* StaticFileServe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044141C6B070800102C2E /* StaticFileServe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B613CE801C9450B400F7122E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B60925321C94229D0093DBAA;
+			remoteInfo = SlimaneMiddleware;
+		};
+		B613CE821C9450B400F7122E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B609253C1C94229D0093DBAA;
+			remoteInfo = SlimaneMiddlewareTests;
+		};
 		B6235B3F1C6A3A4B00A8B9DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B6235B2A1C6A3A4B00A8B9DE /* Project object */;
@@ -41,51 +43,25 @@
 			remoteGlobalIDString = B6235B321C6A3A4B00A8B9DE;
 			remoteInfo = Slimane;
 		};
-		B6235B561C6A3A8400A8B9DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6235B4D1C6A3A8400A8B9DE /* SlimaneHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B69D873A1C43AEE2000D4614;
-			remoteInfo = SlimaneHTTP;
-		};
-		B6235B581C6A3A8400A8B9DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6235B4D1C6A3A8400A8B9DE /* SlimaneHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B69D87441C43AEE2000D4614;
-			remoteInfo = SlimaneHTTPTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SlimaneMiddleware.xcodeproj; path = ../SlimaneMiddleware/Xcode/SlimaneMiddleware.xcodeproj; sourceTree = "<group>"; };
 		B6235B331C6A3A4B00A8B9DE /* Slimane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Slimane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6235B361C6A3A4B00A8B9DE /* Slimane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Slimane.h; sourceTree = "<group>"; };
 		B6235B381C6A3A4B00A8B9DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6235B3D1C6A3A4B00A8B9DE /* SlimaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlimaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6235B421C6A3A4B00A8B9DE /* SlimaneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimaneTests.swift; sourceTree = "<group>"; };
 		B6235B441C6A3A4B00A8B9DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6235B4D1C6A3A8400A8B9DE /* SlimaneHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SlimaneHTTP.xcodeproj; path = ../SlimaneHTTP/Xcode/SlimaneHTTP.xcodeproj; sourceTree = "<group>"; };
 		B6F043FF1C6B070800102C2E /* async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = async.swift; sourceTree = "<group>"; };
-		B6F044001C6B070800102C2E /* BodyParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyParser.swift; sourceTree = "<group>"; };
-		B6F044011C6B070800102C2E /* Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cookie.swift; sourceTree = "<group>"; };
-		B6F044021C6B070800102C2E /* CookieParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookieParser.swift; sourceTree = "<group>"; };
 		B6F044031C6B070800102C2E /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		B6F044041C6B070800102C2E /* Errorhandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errorhandler.swift; sourceTree = "<group>"; };
-		B6F044051C6B070800102C2E /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B6F044061C6B070800102C2E /* MiddlewareStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareStack.swift; sourceTree = "<group>"; };
-		B6F044071C6B070800102C2E /* MiddlewareType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareType.swift; sourceTree = "<group>"; };
-		B6F044081C6B070800102C2E /* MimeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
-		B6F044091C6B070800102C2E /* Request+Callbacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Request+Callbacks.swift"; sourceTree = "<group>"; };
 		B6F0440A1C6B070800102C2E /* RouteStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteStack.swift; sourceTree = "<group>"; };
 		B6F0440B1C6B070800102C2E /* RouteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteType.swift; sourceTree = "<group>"; };
-		B6F0440C1C6B070800102C2E /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		B6F0440D1C6B070800102C2E /* SessionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHandler.swift; sourceTree = "<group>"; };
-		B6F0440E1C6B070800102C2E /* SessionMemoryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionMemoryStore.swift; sourceTree = "<group>"; };
-		B6F0440F1C6B070800102C2E /* SessionStoreType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStoreType.swift; sourceTree = "<group>"; };
 		B6F044101C6B070800102C2E /* Slimane+Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slimane+Router.swift"; sourceTree = "<group>"; };
 		B6F044111C6B070800102C2E /* Slimane+Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slimane+Server.swift"; sourceTree = "<group>"; };
 		B6F044131C6B070800102C2E /* Slimane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slimane.swift; sourceTree = "<group>"; };
-		B6F044141C6B070800102C2E /* StaticFileServe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticFileServe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +83,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B613CE7A1C9450B400F7122E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B613CE811C9450B400F7122E /* SlimaneMiddleware.framework */,
+				B613CE831C9450B400F7122E /* SlimaneMiddlewareTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B6235B291C6A3A4B00A8B9DE = {
 			isa = PBXGroup;
 			children = (
-				B6235B4D1C6A3A8400A8B9DE /* SlimaneHTTP.xcodeproj */,
+				B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */,
 				B6F043FE1C6B070800102C2E /* Sources */,
 				B6235B351C6A3A4B00A8B9DE /* Slimane */,
 				B6235B411C6A3A4B00A8B9DE /* SlimaneTests */,
@@ -145,39 +130,18 @@
 			path = SlimaneTests;
 			sourceTree = "<group>";
 		};
-		B6235B4E1C6A3A8400A8B9DE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B6235B571C6A3A8400A8B9DE /* SlimaneHTTP.framework */,
-				B6235B591C6A3A8400A8B9DE /* SlimaneHTTPTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B6F043FE1C6B070800102C2E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				B6F043FF1C6B070800102C2E /* async.swift */,
-				B6F044001C6B070800102C2E /* BodyParser.swift */,
-				B6F044011C6B070800102C2E /* Cookie.swift */,
-				B6F044021C6B070800102C2E /* CookieParser.swift */,
 				B6F044031C6B070800102C2E /* Error.swift */,
 				B6F044041C6B070800102C2E /* Errorhandler.swift */,
-				B6F044051C6B070800102C2E /* Logger.swift */,
 				B6F044061C6B070800102C2E /* MiddlewareStack.swift */,
-				B6F044071C6B070800102C2E /* MiddlewareType.swift */,
-				B6F044081C6B070800102C2E /* MimeType.swift */,
-				B6F044091C6B070800102C2E /* Request+Callbacks.swift */,
 				B6F0440A1C6B070800102C2E /* RouteStack.swift */,
 				B6F0440B1C6B070800102C2E /* RouteType.swift */,
-				B6F0440C1C6B070800102C2E /* Session.swift */,
-				B6F0440D1C6B070800102C2E /* SessionHandler.swift */,
-				B6F0440E1C6B070800102C2E /* SessionMemoryStore.swift */,
-				B6F0440F1C6B070800102C2E /* SessionStoreType.swift */,
 				B6F044101C6B070800102C2E /* Slimane+Router.swift */,
 				B6F044111C6B070800102C2E /* Slimane+Server.swift */,
 				B6F044131C6B070800102C2E /* Slimane.swift */,
-				B6F044141C6B070800102C2E /* StaticFileServe.swift */,
 			);
 			name = Sources;
 			path = ../../Slimane/Sources;
@@ -263,8 +227,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = B6235B4E1C6A3A8400A8B9DE /* Products */;
-					ProjectRef = B6235B4D1C6A3A8400A8B9DE /* SlimaneHTTP.xcodeproj */;
+					ProductGroup = B613CE7A1C9450B400F7122E /* Products */;
+					ProjectRef = B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -276,18 +240,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		B6235B571C6A3A8400A8B9DE /* SlimaneHTTP.framework */ = {
+		B613CE811C9450B400F7122E /* SlimaneMiddleware.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = SlimaneHTTP.framework;
-			remoteRef = B6235B561C6A3A8400A8B9DE /* PBXContainerItemProxy */;
+			path = SlimaneMiddleware.framework;
+			remoteRef = B613CE801C9450B400F7122E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B6235B591C6A3A8400A8B9DE /* SlimaneHTTPTests.xctest */ = {
+		B613CE831C9450B400F7122E /* SlimaneMiddlewareTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = SlimaneHTTPTests.xctest;
-			remoteRef = B6235B581C6A3A8400A8B9DE /* PBXContainerItemProxy */;
+			path = SlimaneMiddlewareTests.xctest;
+			remoteRef = B613CE821C9450B400F7122E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -315,24 +279,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F044291C6B070800102C2E /* Slimane.swift in Sources */,
-				B6F044221C6B070800102C2E /* Session.swift in Sources */,
-				B6F044181C6B070800102C2E /* CookieParser.swift in Sources */,
-				B6F0442A1C6B070800102C2E /* StaticFileServe.swift in Sources */,
-				B6F044161C6B070800102C2E /* BodyParser.swift in Sources */,
-				B6F0441F1C6B070800102C2E /* Request+Callbacks.swift in Sources */,
-				B6F044231C6B070800102C2E /* SessionHandler.swift in Sources */,
-				B6F044171C6B070800102C2E /* Cookie.swift in Sources */,
 				B6F044201C6B070800102C2E /* RouteStack.swift in Sources */,
-				B6F044251C6B070800102C2E /* SessionStoreType.swift in Sources */,
-				B6F0441E1C6B070800102C2E /* MimeType.swift in Sources */,
 				B6F044191C6B070800102C2E /* Error.swift in Sources */,
 				B6F0441C1C6B070800102C2E /* MiddlewareStack.swift in Sources */,
-				B6F0441D1C6B070800102C2E /* MiddlewareType.swift in Sources */,
 				B6F044261C6B070800102C2E /* Slimane+Router.swift in Sources */,
 				B6F044211C6B070800102C2E /* RouteType.swift in Sources */,
-				B6F0441B1C6B070800102C2E /* Logger.swift in Sources */,
 				B6F044271C6B070800102C2E /* Slimane+Server.swift in Sources */,
-				B6F044241C6B070800102C2E /* SessionMemoryStore.swift in Sources */,
 				B6F044151C6B070800102C2E /* async.swift in Sources */,
 				B6F0441A1C6B070800102C2E /* Errorhandler.swift in Sources */,
 			);
