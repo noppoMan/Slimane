@@ -1,8 +1,12 @@
 # Slimane
-An express inspired web framework for swift
 
 <img src="https://raw.githubusercontent.com/noppoMan/Slimane/master/logo/Slimane_logo.jpg" width=250>
 
+## OverView
+Slimane is an express inspired web framework for swift.
+It works as a completely asynchronous and the core runtime is created with [libuv](https://github.com/libuv/libuv).  
+**So Don't stop the event loop with the CPU heavy tasks.**  
+[Guide of working with the cpu heavy tasks](https://github.com/noppoMan/Slimane/wiki/guide-of-working-with-the-cpu-heavy-tasks)
 
 ### A Work In Progress
 Slimane is currently in active development.  
@@ -114,7 +118,7 @@ struct UserCreateRoute: RouteType {
 app.post("/user", UserCreateRoute)
 ```
 
-### Handy routing
+### Handy Usage
 ```swift
 app.post("/user") { req, res in
   res.write("Hello world!")
@@ -129,13 +133,13 @@ Middleware is functions that have access to the http request, the http response,
 If the next function is not called, request-response cycle is stopped or should call res.write to end request in the middleare.
 
 ### MiddlewareType
+
 ```swift
 struct BodyParser: MiddlewareType {
     func handleRequest(req: Request, res: Response, next: MiddlewareChain) throws {
 
         guard let body = req.bodyString, let contentType = req.contentType else {
-            next(nil)
-            return
+            return next(.Next)
         }
 
         switch(contentType.type) {
@@ -149,23 +153,19 @@ struct BodyParser: MiddlewareType {
             print("Unkown content type")
         }
 
-        next(nil)
+        next(.Next)
     }
 }
-
-app.use(BodyParser())
-
-// of course you can register middleware as following
-app.use(BodyParser().handleRequest) // app.use { req, res, next in ... }
 ```
 
-### Handy
+
+### Handy Usage
+Here is sample for outputting access log
+
 ```swift
 app.use { req, res, next in
-
-  // write some middlware logic
-
-  next(nil)
+  print(req.uri.path ?? "/")
+  next(.Next)
 }
 ```
 
@@ -207,7 +207,7 @@ app.use { req, res, next in
   print(req.sessionId) // see current session id
 
   req.session["bar"] = "session value"
-  next(nil)
+  next(.Next)
 }
 
 app.get("/foo") { req, res in
@@ -405,7 +405,7 @@ app.use { req, res next in
     print("after2")
   })
 
-  next(nil)
+  next(.Next)
 }
 
 app.get("/") { req, res in
@@ -473,7 +473,7 @@ struct SomeValidator: MiddlewareType {
           throw CustomErrorType("Validation Error")
         }
 
-        next(nil)
+        next(.Next)
     }
 }
 ```
@@ -505,7 +505,7 @@ struct StaticFileServe: MiddlewareType {
     func handleRequest(req: Request, res: Response, next: MiddlewareChain) throws {
         File.read("/public/foo/bar.jpg") { err, image in
           if(err) {
-            return next(err)
+            return next(.Error(err))
           }
 
           res.setHeader("Content-Type", "image/jpeg")
