@@ -19,13 +19,13 @@ public struct StaticFileServe: MiddlewareType {
     
     public func handleRequest(req: Request, res: Response, next: MiddlewareChain) {
         guard let path = req.uri.path else {
-            return next(nil)
+            return next(.Next)
         }
         
         let ext = path.splitBy(".").last!
         
         if !MimeType.matchWithAnyStaticFileExtension(ext) {
-            return next(nil)
+            return next(.Next)
         }
         
         FS.readFile(root + path) { data in
@@ -35,7 +35,7 @@ public struct StaticFileServe: MiddlewareType {
                 res.write(buffer)
                 
             case .Error(let err):
-                next(err)
+                next(.Error(err))
             }
         }
     }

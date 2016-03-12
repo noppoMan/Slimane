@@ -56,7 +56,13 @@ extension Slimane {
         middlewares = self.middlewareStack.map { stack in
             return { next in
                 do {
-                    try stack.handler.handleRequest(req, res: res, next: next)
+                    try stack.handler.handleRequest(req, res: res) { result in
+                        if case .Error(let err) = result {
+                            next(err)
+                        } else {
+                            next(nil)
+                        }
+                    }
                 } catch {
                     next(error)
                 }

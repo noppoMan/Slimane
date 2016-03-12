@@ -55,17 +55,17 @@ public final class SessionHandler: MiddlewareType {
         // main loop
         let onFinish = { [unowned self] in
             if let e = err {
-                next(e)
+                next(.Error(e))
                 return
             }
             
             if res.getHeader("set-cookie") != nil {
-                next(nil)
+                next(.Next)
                 return
             }
             
             guard let sessionId = (req.context["signedCookie"] as? [String: String])?[self.session.keyName] else {
-                next(nil)
+                next(.Next)
                 return
             }
             
@@ -76,7 +76,7 @@ public final class SessionHandler: MiddlewareType {
             })
             
             self.session.reload(sessionId) {
-                next(nil)
+                next(.Next)
             }
         }
         

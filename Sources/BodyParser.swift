@@ -24,12 +24,12 @@ public struct BodyParser: MiddlewareType {
     public func handleRequest(req: Request, res: Response, next: MiddlewareChain) {
 
         guard let body = req.bodyString else {
-            next(nil)
+            next(.Next)
             return
         }
 
         guard let contentType = req.contentType else {
-            next(nil)
+            next(.Next)
             return
         }
 
@@ -37,8 +37,8 @@ public struct BodyParser: MiddlewareType {
         case "application/json":
             do {
                 req.context["jsonBody"] = try JSONParser.parse(body)
-            } catch let err {
-                return next(err)
+            } catch {
+                return next(.Error(error))
             }
 
         case "application/xml":
@@ -55,7 +55,7 @@ public struct BodyParser: MiddlewareType {
             req.context["formData"] = parseURLEncodedString(body)
         }
 
-        next(nil)
+        next(.Next)
     }
 }
 

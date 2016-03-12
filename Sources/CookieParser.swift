@@ -23,7 +23,7 @@ public struct CookieParser:  MiddlewareType {
     
     public func handleRequest(req: Request, res: Response, next: MiddlewareChain) {
         guard let cookieStr = req.getHeader("cookie") else {
-            return next(nil)
+            return next(.Next)
         }
         
         Process.qwork(onThread: {
@@ -31,7 +31,7 @@ public struct CookieParser:  MiddlewareType {
             req.context["cookie"] = cookie
             req.context["signedCookie"] = CookieParser.signedCookies(cookie, secret: self.secret)
         }, onFinish: {
-            next(nil)
+            next(.Next)
         })
     }
     
