@@ -1,54 +1,102 @@
 //
 //  Slimane.swift
-//  slimane
+//  Slimane
 //
-//  Created by Yuki Takei on 1/11/16.
+//  Created by Yuki Takei on 4/12/16.
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
 
-import SlimaneHTTP
-import SlimaneMiddleware
-import SlimaneLogger
-
-public typealias Request = HTTPRequest
-public typealias Response = HTTPResponse
-
-public typealias Middleware = (Request, Response, MiddlewareChain) throws -> Void
-public typealias Route = (Request, Response) throws -> Void
-
-public struct HTTPServerOption {
-    public var keepAliveTimeout: UInt = 15
-    public var setNoDelay = false
-}
+@_exported import Middleware
+@_exported import Skelton
+@_exported import S4
+@_exported import C7
 
 public class Slimane {
-    // Aliases
-    public var showPowerdedBy = true
+    internal var middlewares: [AsyncMiddleware] = []
 
-    public let httpServerOption = HTTPServerOption()
-
-    public var context: [String: Any] = [:]
-
-    // Stacks
-    var middlewareStack = [MiddlewareStack]()
-    var routerStack = [RouteStack]()
-
-
-    // Error Handler
-    public var errorHandler: ErrorHandler = DefaultErrorHandler()
-
-    public init(){}
-}
-
-public struct DefaultErrorHandler: ErrorHandler {
-    public func handle(req req: Request, res: Response, error: ErrorType) {
-        switch(error) {
-        case Error.RouteNotFound(let path):
-            Logger.error(error)
-            res.status(.NotFound).write("\(path) is not found.")
-        default:
-            Logger.fatal(error)
-            res.status(.BadRequest).write("\(error)")
+    internal var router: Router
+    
+    public var setNodelay = false
+    
+    public var keepAliveTimeout: UInt = 15
+    
+    public var backlog: UInt = 1024
+    
+    public var errorHandler: ErrorProtocol -> Response = defaultErrorHandler
+    
+    public init(){
+        self.router = Router { _, result in
+            result { Response() }
         }
     }
+
+    internal func dispatch(request: Request, stream: Skelton.HTTPStream){
+        self.middlewares.reversed().chain(to: BasicAsyncResponder { _, result in
+            result {
+                return Response(status: .ok, headers: ["data": Header(Time.rfc1123), "server": Header("Slimane")])
+            }
+        })
+        .respond(to: request, result: { [unowned self] in
+            do {
+                var request = request
+                var response = try $0()
+                if response.isIntercepted {
+                    self.processStream(response, request, stream)
+                } else {
+                    if let route = self.router.match(request) {
+                        request.params = route.params(request)
+                        route.handler.respond(to: request) {
+                            do {
+                                let _response = try $0()
+                                self.processStream(response.merged(_response), request, stream)
+                            } catch {
+                                self.handlerError(error, request, stream)
+                            }
+                        }
+                    } else {
+                        self.handlerError(Error.RouteNotFound(path: request.uri.path ?? "/"), request, stream)
+                    }
+                }
+            } catch {
+                self.handlerError(error, request, stream)
+            }
+        })
+    }
+
+    private func processStream(response: Response, _ request: Request, _ stream: Skelton.HTTPStream){
+        var response = response
+        
+        if response.contentLength == 0 && !response.isChunkEncoded {
+            response.contentLength = response.bodyLength
+        }
+        
+        stream.send(response.responseData)
+        closeStream(request, stream)
+    }
+    
+    private func handlerError(error: ErrorProtocol, _ request: Request, _ stream: Skelton.HTTPStream){
+        let response = errorHandler(error)
+        processStream(response, request, stream)
+    }
+}
+
+private func closeStream(request: Request, _ stream: Skelton.HTTPStream){
+    if request.isKeepAlive {
+        stream.unref()
+    } else {
+        stream.close()
+    }
+}
+
+func defaultErrorHandler(error: ErrorProtocol) -> Response {
+    let response: Response
+    switch error {
+    case Error.RouteNotFound:
+        response = Response(status: .notFound, body: "\(error)")
+    case Error.ResourceNotFound:
+        response = Response(status: .notFound, body: "\(error)")
+    default:
+        response = Response(status: .badRequest, body: "\(error)")
+    }
+    return response
 }

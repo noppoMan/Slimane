@@ -7,264 +7,1275 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B6235B371C6A3A4B00A8B9DE /* Slimane.h in Headers */ = {isa = PBXBuildFile; fileRef = B6235B361C6A3A4B00A8B9DE /* Slimane.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B6235B3E1C6A3A4B00A8B9DE /* Slimane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6235B331C6A3A4B00A8B9DE /* Slimane.framework */; };
-		B6235B431C6A3A4B00A8B9DE /* SlimaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6235B421C6A3A4B00A8B9DE /* SlimaneTests.swift */; };
-		B6F044151C6B070800102C2E /* async.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F043FF1C6B070800102C2E /* async.swift */; };
-		B6F044191C6B070800102C2E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044031C6B070800102C2E /* Error.swift */; };
-		B6F0441A1C6B070800102C2E /* Errorhandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044041C6B070800102C2E /* Errorhandler.swift */; };
-		B6F0441C1C6B070800102C2E /* MiddlewareStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044061C6B070800102C2E /* MiddlewareStack.swift */; };
-		B6F044201C6B070800102C2E /* RouteStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0440A1C6B070800102C2E /* RouteStack.swift */; };
-		B6F044211C6B070800102C2E /* RouteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0440B1C6B070800102C2E /* RouteType.swift */; };
-		B6F044261C6B070800102C2E /* Slimane+Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044101C6B070800102C2E /* Slimane+Router.swift */; };
-		B6F044271C6B070800102C2E /* Slimane+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044111C6B070800102C2E /* Slimane+Server.swift */; };
-		B6F044291C6B070800102C2E /* Slimane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F044131C6B070800102C2E /* Slimane.swift */; };
+		B64795A91CC23F6D007EE2F1 /* Slimane.h in Headers */ = {isa = PBXBuildFile; fileRef = B64795A81CC23F6D007EE2F1 /* Slimane.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B64795B01CC23F6D007EE2F1 /* Slimane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64795A51CC23F6D007EE2F1 /* Slimane.framework */; };
+		B64795B51CC23F6D007EE2F1 /* SlimaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64795B41CC23F6D007EE2F1 /* SlimaneTests.swift */; };
+		B64795C61CC241E6007EE2F1 /* AsyncRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64795C01CC241E6007EE2F1 /* AsyncRoute.swift */; };
+		B64795C71CC241E6007EE2F1 /* AsyncRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64795C11CC241E6007EE2F1 /* AsyncRouter.swift */; };
+		B64795C91CC241E6007EE2F1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64795C31CC241E6007EE2F1 /* Router.swift */; };
+		B64795CA1CC241E6007EE2F1 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64795C41CC241E6007EE2F1 /* Server.swift */; };
+		B64795CB1CC241E6007EE2F1 /* Slimane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64795C51CC241E6007EE2F1 /* Slimane.swift */; };
+		B64797631CC245D7007EE2F1 /* C7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796801CC24206007EE2F1 /* C7.dylib */; };
+		B64797641CC245D7007EE2F1 /* C7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B647960D1CC241F3007EE2F1 /* C7.dylib */; };
+		B64797651CC245D7007EE2F1 /* C7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796B41CC24257007EE2F1 /* C7.dylib */; };
+		B64797661CC245D7007EE2F1 /* Data.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B647968E1CC24206007EE2F1 /* Data.dylib */; };
+		B64797671CC245D7007EE2F1 /* Data.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796111CC241F3007EE2F1 /* Data.dylib */; };
+		B64797681CC245D7007EE2F1 /* Data.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796B81CC24257007EE2F1 /* Data.dylib */; };
+		B64797691CC245D7007EE2F1 /* HTTP.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796961CC24206007EE2F1 /* HTTP.dylib */; };
+		B647976A1CC245D7007EE2F1 /* HTTP.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796211CC241F3007EE2F1 /* HTTP.dylib */; };
+		B647976B1CC245D7007EE2F1 /* HTTPParser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B647968A1CC24206007EE2F1 /* HTTPParser.dylib */; };
+		B647976C1CC245D7007EE2F1 /* MediaType.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796941CC24206007EE2F1 /* MediaType.dylib */; };
+		B647976D1CC245D7007EE2F1 /* MediaType.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796171CC241F3007EE2F1 /* MediaType.dylib */; };
+		B647976E1CC245D7007EE2F1 /* OperatingSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B647967C1CC24206007EE2F1 /* OperatingSystem.dylib */; };
+		B647976F1CC245D7007EE2F1 /* OperatingSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B647960B1CC241F3007EE2F1 /* OperatingSystem.dylib */; };
+		B64797701CC245D7007EE2F1 /* OperatingSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796B21CC24257007EE2F1 /* OperatingSystem.dylib */; };
+		B64797711CC245D7007EE2F1 /* S4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796861CC24206007EE2F1 /* S4.dylib */; };
+		B64797721CC245D7007EE2F1 /* S4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B647961D1CC241F3007EE2F1 /* S4.dylib */; };
+		B64797731CC245D7007EE2F1 /* String.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B647967E1CC24206007EE2F1 /* String.dylib */; };
+		B64797741CC245D7007EE2F1 /* String.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796191CC241F3007EE2F1 /* String.dylib */; };
+		B64797751CC245D7007EE2F1 /* StructuredData.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796901CC24206007EE2F1 /* StructuredData.dylib */; };
+		B64797761CC245D7007EE2F1 /* StructuredData.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796131CC241F3007EE2F1 /* StructuredData.dylib */; };
+		B64797771CC245D7007EE2F1 /* Suv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796781CC24206007EE2F1 /* Suv.dylib */; };
+		B64797781CC245D7007EE2F1 /* Suv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796071CC241F3007EE2F1 /* Suv.dylib */; };
+		B64797791CC245D7007EE2F1 /* URI.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796841CC24206007EE2F1 /* URI.dylib */; };
+		B647977A1CC245D7007EE2F1 /* URI.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B647961B1CC241F3007EE2F1 /* URI.dylib */; };
+		B647977B1CC245D7007EE2F1 /* Middleware.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64796251CC241F3007EE2F1 /* Middleware.dylib */; };
+		B64797801CC2624E007EE2F1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647977F1CC2624E007EE2F1 /* Error.swift */; };
+		B64797821CC263C8007EE2F1 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64797811CC263C8007EE2F1 /* Response.swift */; };
+		B64797BF1CC2A908007EE2F1 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64797BE1CC2A908007EE2F1 /* Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B613CE801C9450B400F7122E /* PBXContainerItemProxy */ = {
+		B64795B11CC23F6D007EE2F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B60925321C94229D0093DBAA;
-			remoteInfo = SlimaneMiddleware;
-		};
-		B613CE821C9450B400F7122E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B609253C1C94229D0093DBAA;
-			remoteInfo = SlimaneMiddlewareTests;
-		};
-		B6235B3F1C6A3A4B00A8B9DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6235B2A1C6A3A4B00A8B9DE /* Project object */;
+			containerPortal = B647959C1CC23F6D007EE2F1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B6235B321C6A3A4B00A8B9DE;
+			remoteGlobalIDString = B64795A41CC23F6D007EE2F1;
 			remoteInfo = Slimane;
+		};
+		B64796061CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Suv";
+			remoteInfo = Suv;
+		};
+		B64796081CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SuvTestSuite";
+			remoteInfo = Suv.testsuite;
+		};
+		B647960A1CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_OperatingSystem";
+			remoteInfo = OperatingSystem;
+		};
+		B647960C1CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_C7";
+			remoteInfo = C7;
+		};
+		B647960E1CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_C7TestSuite";
+			remoteInfo = C7.testsuite;
+		};
+		B64796101CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Data";
+			remoteInfo = Data;
+		};
+		B64796121CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_StructuredData";
+			remoteInfo = StructuredData;
+		};
+		B64796141CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_StructuredDataTestSuite";
+			remoteInfo = StructuredData.testsuite;
+		};
+		B64796161CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_MediaType";
+			remoteInfo = MediaType;
+		};
+		B64796181CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_String";
+			remoteInfo = String;
+		};
+		B647961A1CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_URI";
+			remoteInfo = URI;
+		};
+		B647961C1CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_S4";
+			remoteInfo = S4;
+		};
+		B647961E1CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_S4TestSuite";
+			remoteInfo = S4.testsuite;
+		};
+		B64796201CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_HTTP";
+			remoteInfo = HTTP;
+		};
+		B64796221CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_HTTPTestSuite";
+			remoteInfo = HTTP.testsuite;
+		};
+		B64796241CC241F3007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Middleware";
+			remoteInfo = Middleware;
+		};
+		B64796771CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Suv";
+			remoteInfo = Suv;
+		};
+		B64796791CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SuvTestSuite";
+			remoteInfo = Suv.testsuite;
+		};
+		B647967B1CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_OperatingSystem";
+			remoteInfo = OperatingSystem;
+		};
+		B647967D1CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_String";
+			remoteInfo = String;
+		};
+		B647967F1CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_C7";
+			remoteInfo = C7;
+		};
+		B64796811CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_C7TestSuite";
+			remoteInfo = C7.testsuite;
+		};
+		B64796831CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_URI";
+			remoteInfo = URI;
+		};
+		B64796851CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_S4";
+			remoteInfo = S4;
+		};
+		B64796871CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_S4TestSuite";
+			remoteInfo = S4.testsuite;
+		};
+		B64796891CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_HTTPParser";
+			remoteInfo = HTTPParser;
+		};
+		B647968B1CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_HTTPParserTestSuite";
+			remoteInfo = HTTPParser.testsuite;
+		};
+		B647968D1CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Data";
+			remoteInfo = Data;
+		};
+		B647968F1CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_StructuredData";
+			remoteInfo = StructuredData;
+		};
+		B64796911CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_StructuredDataTestSuite";
+			remoteInfo = StructuredData.testsuite;
+		};
+		B64796931CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_MediaType";
+			remoteInfo = MediaType;
+		};
+		B64796951CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_HTTP";
+			remoteInfo = HTTP;
+		};
+		B64796971CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_HTTPTestSuite";
+			remoteInfo = HTTP.testsuite;
+		};
+		B64796991CC24206007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Skelton";
+			remoteInfo = Skelton;
+		};
+		B64796B11CC24257007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_OperatingSystem";
+			remoteInfo = OperatingSystem;
+		};
+		B64796B31CC24257007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_C7";
+			remoteInfo = C7;
+		};
+		B64796B51CC24257007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_C7TestSuite";
+			remoteInfo = C7.testsuite;
+		};
+		B64796B71CC24257007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Data";
+			remoteInfo = Data;
+		};
+		B64796B91CC24257007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_POSIXRegex";
+			remoteInfo = POSIXRegex;
+		};
+		B64797151CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_OperatingSystem";
+			remoteInfo = OperatingSystem;
+		};
+		B64797171CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_C7";
+			remoteInfo = C7;
+		};
+		B64797191CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_C7TestSuite";
+			remoteInfo = C7.testsuite;
+		};
+		B647971B1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Data";
+			remoteInfo = Data;
+		};
+		B647971D1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_POSIXRegex";
+			remoteInfo = POSIXRegex;
+		};
+		B647971F1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Suv";
+			remoteInfo = Suv;
+		};
+		B64797211CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_SuvTestSuite";
+			remoteInfo = Suv.testsuite;
+		};
+		B64797231CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_OperatingSystem";
+			remoteInfo = OperatingSystem;
+		};
+		B64797251CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_String";
+			remoteInfo = String;
+		};
+		B64797271CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_C7";
+			remoteInfo = C7;
+		};
+		B64797291CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_C7TestSuite";
+			remoteInfo = C7.testsuite;
+		};
+		B647972B1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_URI";
+			remoteInfo = URI;
+		};
+		B647972D1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_S4";
+			remoteInfo = S4;
+		};
+		B647972F1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_S4TestSuite";
+			remoteInfo = S4.testsuite;
+		};
+		B64797311CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_HTTPParser";
+			remoteInfo = HTTPParser;
+		};
+		B64797331CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_HTTPParserTestSuite";
+			remoteInfo = HTTPParser.testsuite;
+		};
+		B64797351CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Data";
+			remoteInfo = Data;
+		};
+		B64797371CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_StructuredData";
+			remoteInfo = StructuredData;
+		};
+		B64797391CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_StructuredDataTestSuite";
+			remoteInfo = StructuredData.testsuite;
+		};
+		B647973B1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_MediaType";
+			remoteInfo = MediaType;
+		};
+		B647973D1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_HTTP";
+			remoteInfo = HTTP;
+		};
+		B647973F1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_HTTPTestSuite";
+			remoteInfo = HTTP.testsuite;
+		};
+		B64797411CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Skelton";
+			remoteInfo = Skelton;
+		};
+		B64797431CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Suv";
+			remoteInfo = Suv;
+		};
+		B64797451CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_SuvTestSuite";
+			remoteInfo = Suv.testsuite;
+		};
+		B64797471CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_OperatingSystem";
+			remoteInfo = OperatingSystem;
+		};
+		B64797491CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_C7";
+			remoteInfo = C7;
+		};
+		B647974B1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_C7TestSuite";
+			remoteInfo = C7.testsuite;
+		};
+		B647974D1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Data";
+			remoteInfo = Data;
+		};
+		B647974F1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_StructuredData";
+			remoteInfo = StructuredData;
+		};
+		B64797511CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_StructuredDataTestSuite";
+			remoteInfo = StructuredData.testsuite;
+		};
+		B64797531CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_MediaType";
+			remoteInfo = MediaType;
+		};
+		B64797551CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_String";
+			remoteInfo = String;
+		};
+		B64797571CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_URI";
+			remoteInfo = URI;
+		};
+		B64797591CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_S4";
+			remoteInfo = S4;
+		};
+		B647975B1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_S4TestSuite";
+			remoteInfo = S4.testsuite;
+		};
+		B647975D1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_HTTP";
+			remoteInfo = HTTP;
+		};
+		B647975F1CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_HTTPTestSuite";
+			remoteInfo = HTTP.testsuite;
+		};
+		B64797611CC245C9007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Middleware";
+			remoteInfo = Middleware;
+		};
+		B64797C21CC2A909007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_JSON";
+			remoteInfo = JSON;
+		};
+		B64797C41CC2A909007EE2F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_JSONTestSuite";
+			remoteInfo = JSON.testsuite;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SlimaneMiddleware.xcodeproj; path = ../SlimaneMiddleware/Xcode/SlimaneMiddleware.xcodeproj; sourceTree = "<group>"; };
-		B6235B331C6A3A4B00A8B9DE /* Slimane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Slimane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6235B361C6A3A4B00A8B9DE /* Slimane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Slimane.h; sourceTree = "<group>"; };
-		B6235B381C6A3A4B00A8B9DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6235B3D1C6A3A4B00A8B9DE /* SlimaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlimaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6235B421C6A3A4B00A8B9DE /* SlimaneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimaneTests.swift; sourceTree = "<group>"; };
-		B6235B441C6A3A4B00A8B9DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6F043FF1C6B070800102C2E /* async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = async.swift; sourceTree = "<group>"; };
-		B6F044031C6B070800102C2E /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		B6F044041C6B070800102C2E /* Errorhandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errorhandler.swift; sourceTree = "<group>"; };
-		B6F044061C6B070800102C2E /* MiddlewareStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareStack.swift; sourceTree = "<group>"; };
-		B6F0440A1C6B070800102C2E /* RouteStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteStack.swift; sourceTree = "<group>"; };
-		B6F0440B1C6B070800102C2E /* RouteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteType.swift; sourceTree = "<group>"; };
-		B6F044101C6B070800102C2E /* Slimane+Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slimane+Router.swift"; sourceTree = "<group>"; };
-		B6F044111C6B070800102C2E /* Slimane+Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slimane+Server.swift"; sourceTree = "<group>"; };
-		B6F044131C6B070800102C2E /* Slimane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slimane.swift; sourceTree = "<group>"; };
+		B64795A51CC23F6D007EE2F1 /* Slimane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Slimane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B64795A81CC23F6D007EE2F1 /* Slimane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Slimane.h; sourceTree = "<group>"; };
+		B64795AA1CC23F6D007EE2F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B64795AF1CC23F6D007EE2F1 /* SlimaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlimaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B64795B41CC23F6D007EE2F1 /* SlimaneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimaneTests.swift; sourceTree = "<group>"; };
+		B64795B61CC23F6D007EE2F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B64795C01CC241E6007EE2F1 /* AsyncRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncRoute.swift; sourceTree = "<group>"; };
+		B64795C11CC241E6007EE2F1 /* AsyncRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncRouter.swift; sourceTree = "<group>"; };
+		B64795C31CC241E6007EE2F1 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		B64795C41CC241E6007EE2F1 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		B64795C51CC241E6007EE2F1 /* Slimane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slimane.swift; sourceTree = "<group>"; };
+		B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MIddleware.xcodeproj; path = ../../Middleware/Xcode/MIddleware.xcodeproj; sourceTree = "<group>"; };
+		B64796301CC24206007EE2F1 /* Skelton.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Skelton.xcodeproj; path = ../../Skelton/Xcode/Skelton.xcodeproj; sourceTree = "<group>"; };
+		B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = POSIXRegex.xcodeproj; path = ../../POSIXRegex/Xcode/POSIXRegex.xcodeproj; sourceTree = "<group>"; };
+		B647977F1CC2624E007EE2F1 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		B64797811CC263C8007EE2F1 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		B64797BE1CC2A908007EE2F1 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B6235B2F1C6A3A4B00A8B9DE /* Frameworks */ = {
+		B64795A11CC23F6D007EE2F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B64797631CC245D7007EE2F1 /* C7.dylib in Frameworks */,
+				B64797641CC245D7007EE2F1 /* C7.dylib in Frameworks */,
+				B64797651CC245D7007EE2F1 /* C7.dylib in Frameworks */,
+				B64797661CC245D7007EE2F1 /* Data.dylib in Frameworks */,
+				B64797671CC245D7007EE2F1 /* Data.dylib in Frameworks */,
+				B64797681CC245D7007EE2F1 /* Data.dylib in Frameworks */,
+				B64797691CC245D7007EE2F1 /* HTTP.dylib in Frameworks */,
+				B647976A1CC245D7007EE2F1 /* HTTP.dylib in Frameworks */,
+				B647976B1CC245D7007EE2F1 /* HTTPParser.dylib in Frameworks */,
+				B647976C1CC245D7007EE2F1 /* MediaType.dylib in Frameworks */,
+				B647976D1CC245D7007EE2F1 /* MediaType.dylib in Frameworks */,
+				B647976E1CC245D7007EE2F1 /* OperatingSystem.dylib in Frameworks */,
+				B647976F1CC245D7007EE2F1 /* OperatingSystem.dylib in Frameworks */,
+				B64797701CC245D7007EE2F1 /* OperatingSystem.dylib in Frameworks */,
+				B64797711CC245D7007EE2F1 /* S4.dylib in Frameworks */,
+				B64797721CC245D7007EE2F1 /* S4.dylib in Frameworks */,
+				B64797731CC245D7007EE2F1 /* String.dylib in Frameworks */,
+				B64797741CC245D7007EE2F1 /* String.dylib in Frameworks */,
+				B64797751CC245D7007EE2F1 /* StructuredData.dylib in Frameworks */,
+				B64797761CC245D7007EE2F1 /* StructuredData.dylib in Frameworks */,
+				B64797771CC245D7007EE2F1 /* Suv.dylib in Frameworks */,
+				B64797781CC245D7007EE2F1 /* Suv.dylib in Frameworks */,
+				B64797791CC245D7007EE2F1 /* URI.dylib in Frameworks */,
+				B647977A1CC245D7007EE2F1 /* URI.dylib in Frameworks */,
+				B647977B1CC245D7007EE2F1 /* Middleware.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6235B3A1C6A3A4B00A8B9DE /* Frameworks */ = {
+		B64795AC1CC23F6D007EE2F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6235B3E1C6A3A4B00A8B9DE /* Slimane.framework in Frameworks */,
+				B64795B01CC23F6D007EE2F1 /* Slimane.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B613CE7A1C9450B400F7122E /* Products */ = {
+		B647959B1CC23F6D007EE2F1 = {
 			isa = PBXGroup;
 			children = (
-				B613CE811C9450B400F7122E /* SlimaneMiddleware.framework */,
-				B613CE831C9450B400F7122E /* SlimaneMiddlewareTests.xctest */,
+				B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */,
+				B64796301CC24206007EE2F1 /* Skelton.xcodeproj */,
+				B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */,
+				B64795BF1CC241E6007EE2F1 /* Sources */,
+				B64795A71CC23F6D007EE2F1 /* Slimane */,
+				B64795B31CC23F6D007EE2F1 /* SlimaneTests */,
+				B64795A61CC23F6D007EE2F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B64795A61CC23F6D007EE2F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B64795A51CC23F6D007EE2F1 /* Slimane.framework */,
+				B64795AF1CC23F6D007EE2F1 /* SlimaneTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B6235B291C6A3A4B00A8B9DE = {
+		B64795A71CC23F6D007EE2F1 /* Slimane */ = {
 			isa = PBXGroup;
 			children = (
-				B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */,
-				B6F043FE1C6B070800102C2E /* Sources */,
-				B6235B351C6A3A4B00A8B9DE /* Slimane */,
-				B6235B411C6A3A4B00A8B9DE /* SlimaneTests */,
-				B6235B341C6A3A4B00A8B9DE /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		B6235B341C6A3A4B00A8B9DE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B6235B331C6A3A4B00A8B9DE /* Slimane.framework */,
-				B6235B3D1C6A3A4B00A8B9DE /* SlimaneTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B6235B351C6A3A4B00A8B9DE /* Slimane */ = {
-			isa = PBXGroup;
-			children = (
-				B6235B361C6A3A4B00A8B9DE /* Slimane.h */,
-				B6235B381C6A3A4B00A8B9DE /* Info.plist */,
+				B64795A81CC23F6D007EE2F1 /* Slimane.h */,
+				B64795AA1CC23F6D007EE2F1 /* Info.plist */,
 			);
 			path = Slimane;
 			sourceTree = "<group>";
 		};
-		B6235B411C6A3A4B00A8B9DE /* SlimaneTests */ = {
+		B64795B31CC23F6D007EE2F1 /* SlimaneTests */ = {
 			isa = PBXGroup;
 			children = (
-				B6235B421C6A3A4B00A8B9DE /* SlimaneTests.swift */,
-				B6235B441C6A3A4B00A8B9DE /* Info.plist */,
+				B64795B41CC23F6D007EE2F1 /* SlimaneTests.swift */,
+				B64795B61CC23F6D007EE2F1 /* Info.plist */,
 			);
 			path = SlimaneTests;
 			sourceTree = "<group>";
 		};
-		B6F043FE1C6B070800102C2E /* Sources */ = {
+		B64795BF1CC241E6007EE2F1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B6F043FF1C6B070800102C2E /* async.swift */,
-				B6F044031C6B070800102C2E /* Error.swift */,
-				B6F044041C6B070800102C2E /* Errorhandler.swift */,
-				B6F044061C6B070800102C2E /* MiddlewareStack.swift */,
-				B6F0440A1C6B070800102C2E /* RouteStack.swift */,
-				B6F0440B1C6B070800102C2E /* RouteType.swift */,
-				B6F044101C6B070800102C2E /* Slimane+Router.swift */,
-				B6F044111C6B070800102C2E /* Slimane+Server.swift */,
-				B6F044131C6B070800102C2E /* Slimane.swift */,
+				B64795C01CC241E6007EE2F1 /* AsyncRoute.swift */,
+				B64795C11CC241E6007EE2F1 /* AsyncRouter.swift */,
+				B64795C31CC241E6007EE2F1 /* Router.swift */,
+				B64795C41CC241E6007EE2F1 /* Server.swift */,
+				B64795C51CC241E6007EE2F1 /* Slimane.swift */,
+				B647977F1CC2624E007EE2F1 /* Error.swift */,
+				B64797811CC263C8007EE2F1 /* Response.swift */,
+				B64797BE1CC2A908007EE2F1 /* Request.swift */,
 			);
 			name = Sources;
-			path = ../../Slimane/Sources;
+			path = ../Sources;
+			sourceTree = "<group>";
+		};
+		B64795CD1CC241F3007EE2F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B64796071CC241F3007EE2F1 /* Suv.dylib */,
+				B64796091CC241F3007EE2F1 /* SuvTestSuite.xctest */,
+				B647960B1CC241F3007EE2F1 /* OperatingSystem.dylib */,
+				B647960D1CC241F3007EE2F1 /* C7.dylib */,
+				B647960F1CC241F3007EE2F1 /* C7TestSuite.xctest */,
+				B64796111CC241F3007EE2F1 /* Data.dylib */,
+				B64796131CC241F3007EE2F1 /* StructuredData.dylib */,
+				B64796151CC241F3007EE2F1 /* StructuredDataTestSuite.xctest */,
+				B64796171CC241F3007EE2F1 /* MediaType.dylib */,
+				B64796191CC241F3007EE2F1 /* String.dylib */,
+				B647961B1CC241F3007EE2F1 /* URI.dylib */,
+				B647961D1CC241F3007EE2F1 /* S4.dylib */,
+				B647961F1CC241F3007EE2F1 /* S4TestSuite.xctest */,
+				B64796211CC241F3007EE2F1 /* HTTP.dylib */,
+				B64796231CC241F3007EE2F1 /* HTTPTestSuite.xctest */,
+				B64797C31CC2A909007EE2F1 /* libJSON.dylib */,
+				B64797C51CC2A909007EE2F1 /* JSONTestSuite.xctest */,
+				B64796251CC241F3007EE2F1 /* Middleware.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B64796311CC24206007EE2F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B64796781CC24206007EE2F1 /* Suv.dylib */,
+				B647967A1CC24206007EE2F1 /* SuvTestSuite.xctest */,
+				B647967C1CC24206007EE2F1 /* OperatingSystem.dylib */,
+				B647967E1CC24206007EE2F1 /* String.dylib */,
+				B64796801CC24206007EE2F1 /* C7.dylib */,
+				B64796821CC24206007EE2F1 /* C7TestSuite.xctest */,
+				B64796841CC24206007EE2F1 /* URI.dylib */,
+				B64796861CC24206007EE2F1 /* S4.dylib */,
+				B64796881CC24206007EE2F1 /* S4TestSuite.xctest */,
+				B647968A1CC24206007EE2F1 /* HTTPParser.dylib */,
+				B647968C1CC24206007EE2F1 /* HTTPParserTestSuite.xctest */,
+				B647968E1CC24206007EE2F1 /* Data.dylib */,
+				B64796901CC24206007EE2F1 /* StructuredData.dylib */,
+				B64796921CC24206007EE2F1 /* StructuredDataTestSuite.xctest */,
+				B64796941CC24206007EE2F1 /* MediaType.dylib */,
+				B64796961CC24206007EE2F1 /* HTTP.dylib */,
+				B64796981CC24206007EE2F1 /* HTTPTestSuite.xctest */,
+				B647969A1CC24206007EE2F1 /* Skelton.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B64796A71CC24257007EE2F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B64796B21CC24257007EE2F1 /* OperatingSystem.dylib */,
+				B64796B41CC24257007EE2F1 /* C7.dylib */,
+				B64796B61CC24257007EE2F1 /* C7TestSuite.xctest */,
+				B64796B81CC24257007EE2F1 /* Data.dylib */,
+				B64796BA1CC24257007EE2F1 /* POSIXRegex.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		B6235B301C6A3A4B00A8B9DE /* Headers */ = {
+		B64795A21CC23F6D007EE2F1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6235B371C6A3A4B00A8B9DE /* Slimane.h in Headers */,
+				B64795A91CC23F6D007EE2F1 /* Slimane.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B6235B321C6A3A4B00A8B9DE /* Slimane */ = {
+		B64795A41CC23F6D007EE2F1 /* Slimane */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6235B471C6A3A4B00A8B9DE /* Build configuration list for PBXNativeTarget "Slimane" */;
+			buildConfigurationList = B64795B91CC23F6D007EE2F1 /* Build configuration list for PBXNativeTarget "Slimane" */;
 			buildPhases = (
-				B6235B2E1C6A3A4B00A8B9DE /* Sources */,
-				B6235B2F1C6A3A4B00A8B9DE /* Frameworks */,
-				B6235B301C6A3A4B00A8B9DE /* Headers */,
-				B6235B311C6A3A4B00A8B9DE /* Resources */,
+				B64795A01CC23F6D007EE2F1 /* Sources */,
+				B64795A11CC23F6D007EE2F1 /* Frameworks */,
+				B64795A21CC23F6D007EE2F1 /* Headers */,
+				B64795A31CC23F6D007EE2F1 /* Resources */,
+				B647977C1CC2490B007EE2F1 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B64797161CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797181CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647971A1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647971C1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647971E1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797201CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797221CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797241CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797261CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797281CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647972A1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647972C1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647972E1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797301CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797321CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797341CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797361CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797381CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647973A1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647973C1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647973E1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797401CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797421CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797441CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797461CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797481CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647974A1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647974C1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647974E1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797501CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797521CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797541CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797561CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797581CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647975A1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647975C1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B647975E1CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797601CC245C9007EE2F1 /* PBXTargetDependency */,
+				B64797621CC245C9007EE2F1 /* PBXTargetDependency */,
 			);
 			name = Slimane;
 			productName = Slimane;
-			productReference = B6235B331C6A3A4B00A8B9DE /* Slimane.framework */;
+			productReference = B64795A51CC23F6D007EE2F1 /* Slimane.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B6235B3C1C6A3A4B00A8B9DE /* SlimaneTests */ = {
+		B64795AE1CC23F6D007EE2F1 /* SlimaneTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6235B4A1C6A3A4B00A8B9DE /* Build configuration list for PBXNativeTarget "SlimaneTests" */;
+			buildConfigurationList = B64795BC1CC23F6D007EE2F1 /* Build configuration list for PBXNativeTarget "SlimaneTests" */;
 			buildPhases = (
-				B6235B391C6A3A4B00A8B9DE /* Sources */,
-				B6235B3A1C6A3A4B00A8B9DE /* Frameworks */,
-				B6235B3B1C6A3A4B00A8B9DE /* Resources */,
+				B64795AB1CC23F6D007EE2F1 /* Sources */,
+				B64795AC1CC23F6D007EE2F1 /* Frameworks */,
+				B64795AD1CC23F6D007EE2F1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B6235B401C6A3A4B00A8B9DE /* PBXTargetDependency */,
+				B64795B21CC23F6D007EE2F1 /* PBXTargetDependency */,
 			);
 			name = SlimaneTests;
 			productName = SlimaneTests;
-			productReference = B6235B3D1C6A3A4B00A8B9DE /* SlimaneTests.xctest */;
+			productReference = B64795AF1CC23F6D007EE2F1 /* SlimaneTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B6235B2A1C6A3A4B00A8B9DE /* Project object */ = {
+		B647959C1CC23F6D007EE2F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = MikeTOKYO;
 				TargetAttributes = {
-					B6235B321C6A3A4B00A8B9DE = {
-						CreatedOnToolsVersion = 7.2;
+					B64795A41CC23F6D007EE2F1 = {
+						CreatedOnToolsVersion = 7.3;
 					};
-					B6235B3C1C6A3A4B00A8B9DE = {
-						CreatedOnToolsVersion = 7.2;
+					B64795AE1CC23F6D007EE2F1 = {
+						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
-			buildConfigurationList = B6235B2D1C6A3A4B00A8B9DE /* Build configuration list for PBXProject "Slimane" */;
+			buildConfigurationList = B647959F1CC23F6D007EE2F1 /* Build configuration list for PBXProject "Slimane" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = B6235B291C6A3A4B00A8B9DE;
-			productRefGroup = B6235B341C6A3A4B00A8B9DE /* Products */;
+			mainGroup = B647959B1CC23F6D007EE2F1;
+			productRefGroup = B64795A61CC23F6D007EE2F1 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = B613CE7A1C9450B400F7122E /* Products */;
-					ProjectRef = B613CE791C9450B400F7122E /* SlimaneMiddleware.xcodeproj */;
+					ProductGroup = B64795CD1CC241F3007EE2F1 /* Products */;
+					ProjectRef = B64795CC1CC241F3007EE2F1 /* MIddleware.xcodeproj */;
+				},
+				{
+					ProductGroup = B64796A71CC24257007EE2F1 /* Products */;
+					ProjectRef = B64796A61CC24257007EE2F1 /* POSIXRegex.xcodeproj */;
+				},
+				{
+					ProductGroup = B64796311CC24206007EE2F1 /* Products */;
+					ProjectRef = B64796301CC24206007EE2F1 /* Skelton.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				B6235B321C6A3A4B00A8B9DE /* Slimane */,
-				B6235B3C1C6A3A4B00A8B9DE /* SlimaneTests */,
+				B64795A41CC23F6D007EE2F1 /* Slimane */,
+				B64795AE1CC23F6D007EE2F1 /* SlimaneTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		B613CE811C9450B400F7122E /* SlimaneMiddleware.framework */ = {
+		B64796071CC241F3007EE2F1 /* Suv.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SlimaneMiddleware.framework;
-			remoteRef = B613CE801C9450B400F7122E /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.dylib";
+			name = Suv.dylib;
+			path = libSuv.dylib;
+			remoteRef = B64796061CC241F3007EE2F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B613CE831C9450B400F7122E /* SlimaneMiddlewareTests.xctest */ = {
+		B64796091CC241F3007EE2F1 /* SuvTestSuite.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SlimaneMiddlewareTests.xctest;
-			remoteRef = B613CE821C9450B400F7122E /* PBXContainerItemProxy */;
+			fileType = file;
+			name = SuvTestSuite.xctest;
+			path = Suv.testsuite.xctest;
+			remoteRef = B64796081CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647960B1CC241F3007EE2F1 /* OperatingSystem.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = OperatingSystem.dylib;
+			path = libOperatingSystem.dylib;
+			remoteRef = B647960A1CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647960D1CC241F3007EE2F1 /* C7.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = C7.dylib;
+			path = libC7.dylib;
+			remoteRef = B647960C1CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647960F1CC241F3007EE2F1 /* C7TestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = C7TestSuite.xctest;
+			path = C7.testsuite.xctest;
+			remoteRef = B647960E1CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796111CC241F3007EE2F1 /* Data.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = Data.dylib;
+			path = libData.dylib;
+			remoteRef = B64796101CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796131CC241F3007EE2F1 /* StructuredData.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = StructuredData.dylib;
+			path = libStructuredData.dylib;
+			remoteRef = B64796121CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796151CC241F3007EE2F1 /* StructuredDataTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = StructuredDataTestSuite.xctest;
+			path = StructuredData.testsuite.xctest;
+			remoteRef = B64796141CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796171CC241F3007EE2F1 /* MediaType.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = MediaType.dylib;
+			path = libMediaType.dylib;
+			remoteRef = B64796161CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796191CC241F3007EE2F1 /* String.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = String.dylib;
+			path = libString.dylib;
+			remoteRef = B64796181CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647961B1CC241F3007EE2F1 /* URI.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = URI.dylib;
+			path = libURI.dylib;
+			remoteRef = B647961A1CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647961D1CC241F3007EE2F1 /* S4.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = S4.dylib;
+			path = libS4.dylib;
+			remoteRef = B647961C1CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647961F1CC241F3007EE2F1 /* S4TestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = S4TestSuite.xctest;
+			path = S4.testsuite.xctest;
+			remoteRef = B647961E1CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796211CC241F3007EE2F1 /* HTTP.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = HTTP.dylib;
+			path = libHTTP.dylib;
+			remoteRef = B64796201CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796231CC241F3007EE2F1 /* HTTPTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = HTTPTestSuite.xctest;
+			path = HTTP.testsuite.xctest;
+			remoteRef = B64796221CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796251CC241F3007EE2F1 /* Middleware.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = Middleware.dylib;
+			path = libMiddleware.dylib;
+			remoteRef = B64796241CC241F3007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796781CC24206007EE2F1 /* Suv.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = Suv.dylib;
+			path = libSuv.dylib;
+			remoteRef = B64796771CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647967A1CC24206007EE2F1 /* SuvTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = SuvTestSuite.xctest;
+			path = Suv.testsuite.xctest;
+			remoteRef = B64796791CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647967C1CC24206007EE2F1 /* OperatingSystem.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = OperatingSystem.dylib;
+			path = libOperatingSystem.dylib;
+			remoteRef = B647967B1CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647967E1CC24206007EE2F1 /* String.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = String.dylib;
+			path = libString.dylib;
+			remoteRef = B647967D1CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796801CC24206007EE2F1 /* C7.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = C7.dylib;
+			path = libC7.dylib;
+			remoteRef = B647967F1CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796821CC24206007EE2F1 /* C7TestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = C7TestSuite.xctest;
+			path = C7.testsuite.xctest;
+			remoteRef = B64796811CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796841CC24206007EE2F1 /* URI.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = URI.dylib;
+			path = libURI.dylib;
+			remoteRef = B64796831CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796861CC24206007EE2F1 /* S4.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = S4.dylib;
+			path = libS4.dylib;
+			remoteRef = B64796851CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796881CC24206007EE2F1 /* S4TestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = S4TestSuite.xctest;
+			path = S4.testsuite.xctest;
+			remoteRef = B64796871CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647968A1CC24206007EE2F1 /* HTTPParser.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = HTTPParser.dylib;
+			path = libHTTPParser.dylib;
+			remoteRef = B64796891CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647968C1CC24206007EE2F1 /* HTTPParserTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = HTTPParserTestSuite.xctest;
+			path = HTTPParser.testsuite.xctest;
+			remoteRef = B647968B1CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647968E1CC24206007EE2F1 /* Data.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = Data.dylib;
+			path = libData.dylib;
+			remoteRef = B647968D1CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796901CC24206007EE2F1 /* StructuredData.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = StructuredData.dylib;
+			path = libStructuredData.dylib;
+			remoteRef = B647968F1CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796921CC24206007EE2F1 /* StructuredDataTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = StructuredDataTestSuite.xctest;
+			path = StructuredData.testsuite.xctest;
+			remoteRef = B64796911CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796941CC24206007EE2F1 /* MediaType.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = MediaType.dylib;
+			path = libMediaType.dylib;
+			remoteRef = B64796931CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796961CC24206007EE2F1 /* HTTP.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = HTTP.dylib;
+			path = libHTTP.dylib;
+			remoteRef = B64796951CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796981CC24206007EE2F1 /* HTTPTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = HTTPTestSuite.xctest;
+			path = HTTP.testsuite.xctest;
+			remoteRef = B64796971CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B647969A1CC24206007EE2F1 /* Skelton.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = Skelton.dylib;
+			path = libSkelton.dylib;
+			remoteRef = B64796991CC24206007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796B21CC24257007EE2F1 /* OperatingSystem.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = OperatingSystem.dylib;
+			path = libOperatingSystem.dylib;
+			remoteRef = B64796B11CC24257007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796B41CC24257007EE2F1 /* C7.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = C7.dylib;
+			path = libC7.dylib;
+			remoteRef = B64796B31CC24257007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796B61CC24257007EE2F1 /* C7TestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = C7TestSuite.xctest;
+			path = C7.testsuite.xctest;
+			remoteRef = B64796B51CC24257007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796B81CC24257007EE2F1 /* Data.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = Data.dylib;
+			path = libData.dylib;
+			remoteRef = B64796B71CC24257007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64796BA1CC24257007EE2F1 /* POSIXRegex.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = POSIXRegex.dylib;
+			path = libPOSIXRegex.dylib;
+			remoteRef = B64796B91CC24257007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64797C31CC2A909007EE2F1 /* libJSON.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libJSON.dylib;
+			remoteRef = B64797C21CC2A909007EE2F1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B64797C51CC2A909007EE2F1 /* JSONTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			name = JSONTestSuite.xctest;
+			path = JSON.testsuite.xctest;
+			remoteRef = B64797C41CC2A909007EE2F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B6235B311C6A3A4B00A8B9DE /* Resources */ = {
+		B64795A31CC23F6D007EE2F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6235B3B1C6A3A4B00A8B9DE /* Resources */ = {
+		B64795AD1CC23F6D007EE2F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -273,46 +1284,257 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B647977C1CC2490B007EE2F1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swift build --chdir \"$SRCROOT\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		B6235B2E1C6A3A4B00A8B9DE /* Sources */ = {
+		B64795A01CC23F6D007EE2F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F044291C6B070800102C2E /* Slimane.swift in Sources */,
-				B6F044201C6B070800102C2E /* RouteStack.swift in Sources */,
-				B6F044191C6B070800102C2E /* Error.swift in Sources */,
-				B6F0441C1C6B070800102C2E /* MiddlewareStack.swift in Sources */,
-				B6F044261C6B070800102C2E /* Slimane+Router.swift in Sources */,
-				B6F044211C6B070800102C2E /* RouteType.swift in Sources */,
-				B6F044271C6B070800102C2E /* Slimane+Server.swift in Sources */,
-				B6F044151C6B070800102C2E /* async.swift in Sources */,
-				B6F0441A1C6B070800102C2E /* Errorhandler.swift in Sources */,
+				B64795CA1CC241E6007EE2F1 /* Server.swift in Sources */,
+				B64797821CC263C8007EE2F1 /* Response.swift in Sources */,
+				B64795C91CC241E6007EE2F1 /* Router.swift in Sources */,
+				B64795C61CC241E6007EE2F1 /* AsyncRoute.swift in Sources */,
+				B64795CB1CC241E6007EE2F1 /* Slimane.swift in Sources */,
+				B64795C71CC241E6007EE2F1 /* AsyncRouter.swift in Sources */,
+				B64797801CC2624E007EE2F1 /* Error.swift in Sources */,
+				B64797BF1CC2A908007EE2F1 /* Request.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6235B391C6A3A4B00A8B9DE /* Sources */ = {
+		B64795AB1CC23F6D007EE2F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6235B431C6A3A4B00A8B9DE /* SlimaneTests.swift in Sources */,
+				B64795B51CC23F6D007EE2F1 /* SlimaneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B6235B401C6A3A4B00A8B9DE /* PBXTargetDependency */ = {
+		B64795B21CC23F6D007EE2F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B6235B321C6A3A4B00A8B9DE /* Slimane */;
-			targetProxy = B6235B3F1C6A3A4B00A8B9DE /* PBXContainerItemProxy */;
+			target = B64795A41CC23F6D007EE2F1 /* Slimane */;
+			targetProxy = B64795B11CC23F6D007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797161CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OperatingSystem;
+			targetProxy = B64797151CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797181CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = C7;
+			targetProxy = B64797171CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647971A1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = C7.testsuite;
+			targetProxy = B64797191CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647971C1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Data;
+			targetProxy = B647971B1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647971E1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = POSIXRegex;
+			targetProxy = B647971D1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797201CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Suv;
+			targetProxy = B647971F1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797221CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Suv.testsuite;
+			targetProxy = B64797211CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797241CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OperatingSystem;
+			targetProxy = B64797231CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797261CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = String;
+			targetProxy = B64797251CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797281CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = C7;
+			targetProxy = B64797271CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647972A1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = C7.testsuite;
+			targetProxy = B64797291CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647972C1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = URI;
+			targetProxy = B647972B1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647972E1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = S4;
+			targetProxy = B647972D1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797301CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = S4.testsuite;
+			targetProxy = B647972F1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797321CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HTTPParser;
+			targetProxy = B64797311CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797341CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HTTPParser.testsuite;
+			targetProxy = B64797331CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797361CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Data;
+			targetProxy = B64797351CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797381CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = StructuredData;
+			targetProxy = B64797371CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647973A1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = StructuredData.testsuite;
+			targetProxy = B64797391CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647973C1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MediaType;
+			targetProxy = B647973B1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647973E1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HTTP;
+			targetProxy = B647973D1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797401CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HTTP.testsuite;
+			targetProxy = B647973F1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797421CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Skelton;
+			targetProxy = B64797411CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797441CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Suv;
+			targetProxy = B64797431CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797461CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Suv.testsuite;
+			targetProxy = B64797451CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797481CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OperatingSystem;
+			targetProxy = B64797471CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647974A1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = C7;
+			targetProxy = B64797491CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647974C1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = C7.testsuite;
+			targetProxy = B647974B1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647974E1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Data;
+			targetProxy = B647974D1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797501CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = StructuredData;
+			targetProxy = B647974F1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797521CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = StructuredData.testsuite;
+			targetProxy = B64797511CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797541CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MediaType;
+			targetProxy = B64797531CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797561CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = String;
+			targetProxy = B64797551CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797581CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = URI;
+			targetProxy = B64797571CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647975A1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = S4;
+			targetProxy = B64797591CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647975C1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = S4.testsuite;
+			targetProxy = B647975B1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B647975E1CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HTTP;
+			targetProxy = B647975D1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797601CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HTTP.testsuite;
+			targetProxy = B647975F1CC245C9007EE2F1 /* PBXContainerItemProxy */;
+		};
+		B64797621CC245C9007EE2F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Middleware;
+			targetProxy = B64797611CC245C9007EE2F1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		B6235B451C6A3A4B00A8B9DE /* Debug */ = {
+		B64795B71CC23F6D007EE2F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -356,10 +1578,11 @@
 			};
 			name = Debug;
 		};
-		B6235B461C6A3A4B00A8B9DE /* Release */ = {
+		B64795B81CC23F6D007EE2F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -395,7 +1618,7 @@
 			};
 			name = Release;
 		};
-		B6235B481C6A3A4B00A8B9DE /* Debug */ = {
+		B64795BA1CC23F6D007EE2F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -403,20 +1626,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = Slimane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.miketokyo.Slimane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		B6235B491C6A3A4B00A8B9DE /* Release */ = {
+		B64795BB1CC23F6D007EE2F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -424,20 +1644,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = Slimane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.miketokyo.Slimane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		B6235B4B1C6A3A4B00A8B9DE /* Debug */ = {
+		B64795BD1CC23F6D007EE2F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -448,7 +1665,7 @@
 			};
 			name = Debug;
 		};
-		B6235B4C1C6A3A4B00A8B9DE /* Release */ = {
+		B64795BE1CC23F6D007EE2F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -462,34 +1679,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B6235B2D1C6A3A4B00A8B9DE /* Build configuration list for PBXProject "Slimane" */ = {
+		B647959F1CC23F6D007EE2F1 /* Build configuration list for PBXProject "Slimane" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6235B451C6A3A4B00A8B9DE /* Debug */,
-				B6235B461C6A3A4B00A8B9DE /* Release */,
+				B64795B71CC23F6D007EE2F1 /* Debug */,
+				B64795B81CC23F6D007EE2F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6235B471C6A3A4B00A8B9DE /* Build configuration list for PBXNativeTarget "Slimane" */ = {
+		B64795B91CC23F6D007EE2F1 /* Build configuration list for PBXNativeTarget "Slimane" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6235B481C6A3A4B00A8B9DE /* Debug */,
-				B6235B491C6A3A4B00A8B9DE /* Release */,
+				B64795BA1CC23F6D007EE2F1 /* Debug */,
+				B64795BB1CC23F6D007EE2F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6235B4A1C6A3A4B00A8B9DE /* Build configuration list for PBXNativeTarget "SlimaneTests" */ = {
+		B64795BC1CC23F6D007EE2F1 /* Build configuration list for PBXNativeTarget "SlimaneTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6235B4B1C6A3A4B00A8B9DE /* Debug */,
-				B6235B4C1C6A3A4B00A8B9DE /* Release */,
+				B64795BD1CC23F6D007EE2F1 /* Debug */,
+				B64795BE1CC23F6D007EE2F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B6235B2A1C6A3A4B00A8B9DE /* Project object */;
+	rootObject = B647959C1CC23F6D007EE2F1 /* Project object */;
 }

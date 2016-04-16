@@ -2,7 +2,7 @@
 //  SlimaneTests.swift
 //  SlimaneTests
 //
-//  Created by Yuki Takei on 2/10/16.
+//  Created by Yuki Takei on 4/16/16.
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
 

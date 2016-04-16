@@ -1,11 +1,3 @@
-.DS_Store
-Packages
 .build
-Xcode/slimane.xcworkspace/xcuserdata
-Xcode/slimane.xcodeproj/xcuserdata/
-Xcode/slimane.xcodeproj/project.xcworkspace/xcuserdata
-Xcode/slimane.xcodeproj/project.xcworkspace/xcshareddata
-Xcode/build
-Xcode/Slimane.xcodeproj/project.xcworkspace/xcuserdata
-Xcode/Slimane.xcodeproj/project.xcworkspace/xcshareddata
-Xcode/Slimane.xcodeproj/xcuserdata/
+Packages
+Xcode
