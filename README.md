@@ -157,7 +157,7 @@ Getting ready
 Getting ready
 
 
-### Handling Errors
+## Handling Errors
 
 Easy to override Default Error Handler with replace `app.errorHandler` to your costume handler.
 All of the errors that occurred in Slimane's lifecycles are passed as first argument of errorHandler even RouteNotFound.
