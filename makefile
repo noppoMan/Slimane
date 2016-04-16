@@ -1,13 +1,6 @@
 CLibUv=CLibUv-*
-COpenSSL=COpenSSL-*
-HTTPParser=HTTPParser-*
-CURIParser=CURIParser-*
 
-BUILDOPTS=-Xlinker -L/usr/lib \
-	-Xcc -IPackages/$(CLibUv) \
-	-Xcc -IPackages/$(COpenSSL) \
-	-Xcc -IPackages/$(HTTPParser) \
-	-Xcc -IPackages/$(CURIParser)
+BUILDOPTS=-Xlinker -L/usr/lib -Xcc -IPackages/$(CLibUv)
 
 SWIFTC=swiftc
 SWIFT=swift
