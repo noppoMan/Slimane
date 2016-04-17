@@ -126,14 +126,14 @@ app.use { req, res, next in
 
 ### Intercept Response
 
-Can intercept response at the middleware with storing any values to the Response.body object.
-It means, **never reaches** next middleware chains and the route.
+Can intercept response at the middleware with passing any values into the Response.body object.
+It means **respond soon** and **never reaches** next middleware chains and the route.
 
 ```swift
 app.use { req, res, next in
     var res = res
     res.body("I'm intercepted at the middleware")
-    next(.Chain(res))
+    next(.Chain(req, res))
 }
 ```
 
