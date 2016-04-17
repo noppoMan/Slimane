@@ -77,11 +77,9 @@ app.get("/articles/:id") { req, responder in
 
 
 ## Middlewares
-Middleware is functions that have access to the http request, the http response, and the next function in the application' s request-response cycle.
+Middleware is functions that have access to the http request, the http response, and the next function in the application' s request-response cycle. We offers 3 types of registration ways for that.
 
 See more to visit https://github.com/slimane-swift/Middleware
-
-We have 3 registration types for that
 
 ### MiddlewareType
 ```swift
@@ -89,7 +87,7 @@ We have 3 registration types for that
 struct AccessLogMiddleware: MiddlewareType {
     func respond(req: Request, res: Response, next: MiddlewareChain) {
         print("[\(Suv.Time())] \(req.uri.path ?? "/")")
-        next(.Chain(res))
+        next(.Chain(req, res))
     }
 }
 
@@ -122,19 +120,19 @@ app.use(AccessLogMiddleware())
 ```swift
 app.use { req, res, next in
     print("[\(Suv.Time())] \(req.uri.path ?? "/")")
-    next(.Chain(res))
+    next(.Chain(req, res))
 }
 ```
 
 ### Intercept Response
 
-Can intercept response at the middleware with passing any values the Response.body object.
+Can intercept response at the middleware with storing any values to the Response.body object.
 It means, **never reaches** next middleware chains and the route.
 
 ```swift
 app.use { req, res, next in
-    var res = res // first, response object is immutable.
-    res.body("Intercepted at the middleware")
+    var res = res
+    res.body("I'm intercepted at the middleware")
     next(.Chain(res))
 }
 ```
