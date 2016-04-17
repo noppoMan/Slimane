@@ -31,15 +31,17 @@ public class Slimane {
     }
 
     internal func dispatch(request: Request, stream: Skelton.HTTPStream){
-        self.middlewares.reversed().chain(to: BasicAsyncResponder { _, result in
+        var request = request
+        request.response = Response(status: .ok, headers: ["data": Header(Time.rfc1123), "server": Header("Slimane")])
+        
+        self.middlewares.chain(to: BasicAsyncResponder { _, result in
             result {
-                return Response(status: .ok, headers: ["data": Header(Time.rfc1123), "server": Header("Slimane")])
+                return request.response
             }
         })
         .respond(to: request, result: { [unowned self] in
             do {
-                var request = request
-                var response = try $0()
+                let response = try $0()
                 if response.isIntercepted {
                     self.processStream(response, request, stream)
                 } else {
