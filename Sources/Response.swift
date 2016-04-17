@@ -24,7 +24,7 @@ extension Response {
         return 0
     }
     
-    public func merged(target: Response) -> Response {
+    func merged(target: Response) -> Response {
         var response = self
         for (k,v) in target.headers {
             response.headers[k] = v
@@ -32,6 +32,8 @@ extension Response {
         for (k,v) in target.storage {
             response.storage[k] = v
         }
+        response.version = target.version
+        response.status = target.status
         response.body = target.body
         return response
     }
