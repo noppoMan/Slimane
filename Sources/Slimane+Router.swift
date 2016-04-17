@@ -15,6 +15,12 @@ extension Slimane {
     public func use(handler: MiddlewareType){
         middlewares.append(handler)
     }
+    
+    public func use(handler: AsyncMiddleware){
+        // Wrap with basicMiddleware to enable response interceptor
+        let middleware = AsyncMiddlewareWrapper(handler: handler)
+        middlewares.append(middleware)
+    }
 }
 
 extension Slimane {
