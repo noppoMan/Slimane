@@ -14,7 +14,7 @@
 
 public class Slimane {
     internal var middlewares: [AsyncMiddleware] = []
-
+    
     internal var router: Router
     
     public var setNodelay = false
@@ -30,7 +30,7 @@ public class Slimane {
             result { Response() }
         }
     }
-
+    
     internal func dispatch(request: Request, stream: Skelton.HTTPStream){
         var request = request
         let responder: AsyncResponder
@@ -43,7 +43,11 @@ public class Slimane {
                     }
                     return
                 }
-                route.handler.respond(to: request, result: result)
+                route.handler.respond(to: request) { chainedResponse in
+                    result {
+                        request.response.merged(try chainedResponse())
+                    }
+                }
             }
         } else {
             responder = BasicAsyncResponder { [unowned self] _, result in
@@ -60,9 +64,16 @@ public class Slimane {
             }
         }
     }
-
+    
     private func processStream(response: Response, _ request: Request, _ stream: Skelton.HTTPStream){
         var response = response
+        
+        response.headers["Date"] = Header(Time().rfc1123)
+        response.headers["Server"] = Header("Slimane")
+        
+        if response.headers["Connection"].isEmpty {
+            response.headers["Connection"] = Header(request.isKeepAlive ? "Keep-Alive" : "Close")
+        }
         
         if response.contentLength == 0 && !response.isChunkEncoded {
             response.contentLength = response.bodyLength
