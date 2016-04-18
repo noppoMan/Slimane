@@ -100,15 +100,12 @@ Can pass the Open-Swift's AsyncMiddleware confirming Middleware
 ```swift
 struct AccessLogMiddleware: AsyncMiddleware {
     func respond(to request: Request, chainingTo next: AsyncResponder, result: (Void throws -> Response) -> Void) {
-        next.respond(to: request, result: {
-            do {
-                let response = try $0()
-                print("[\(Suv.Time())] \(req.uri.path ?? "/")")
-                result { response }
-            } catch {
-              result { throw error }
+        print("[\(Suv.Time())] \(request.path ?? "/")")
+        next.respond(to: request) { response in
+            result {
+                try response()
             }
-        })
+        }
     }
 }
 
