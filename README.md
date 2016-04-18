@@ -139,9 +139,69 @@ app.use { req, res, next in
 We are using S4.Request and S4.Response
 See more detail, please visit https://github.com/open-swift/S4
 
+## Static Files/Assets
 
-## Session/Cookie
-Getting ready
+Just register the `Slimane.Static()` into middleware chains
+
+```swift
+app.use(Slimane.Static(root: "/path/to/your/public"))
+```
+
+## Cookie
+
+#### request.cookie: `Set<Cookie>`
+
+request.cookies is Readonly.
+```swift
+req.cookies["session-id"]
+```
+
+**Cookie** is declared in S4. See more to visit https://github.com/open-swift/S4
+
+#### response.cookies: `Set<AttributedCookie>`
+
+response.cookies is Writable.
+
+```swift
+let setCookie = AttributedCookie(....)
+res.cookies = Set<setCookie>
+```
+**AttributedCookie** is declared in S4. See more to visit https://github.com/open-swift/S4
+
+
+## Session
+
+Register SessionMiddleware into the middleware chains.
+See more detail for SessionMiddleware to visit https://github.com/slimane-swift/SessionMiddleware
+
+```swift
+import Slimane
+import SessionMiddleware
+
+let app = Slimane()
+
+// SessionConfig
+let sesConf = SessionConfig(
+    secret: "my-secret-value",
+    expires: 180,
+    HTTPOnly: true
+)
+
+// Enable to use session in Slimane
+app.use(SessionMiddleware(conf: sesConf))
+
+app.get("/") { req, responder
+    // set data into the session
+    req.session["foo"] = "bar"
+
+    req.session.id // show session id
+
+    responder {
+        Response()
+    }
+}
+
+```
 
 ## Body Data
 
