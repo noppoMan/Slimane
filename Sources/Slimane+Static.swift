@@ -24,10 +24,9 @@ extension Slimane {
                 case .Success(let buffer):
                     var res = res
                     res.contentType = mediaType
-                    res.body = .buffer(Data(buffer.bytes))
+                    res.body = .buffer(buffer.data)
                     next(.Chain(req, res))
                 case .Error(let error):
-                    print(error)
                     next(.Error(Error.ResourceNotFound("\(path) is not found")))
                 }
             }

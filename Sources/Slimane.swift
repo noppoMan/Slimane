@@ -43,9 +43,9 @@ public class Slimane {
             if let route = self.router.match(request) {
                 var request = request
                 request.params = route.params(request)
-                route.handler.respond(to: request) { chainedResponse in
+                route.handler.respond(to: request) { response in
                     result {
-                        request.response.merged(try chainedResponse())
+                        request.response.merged(try response())
                     }
                 }
             } else {
