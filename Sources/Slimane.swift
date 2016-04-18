@@ -6,6 +6,7 @@
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
 
+@_exported import Time
 @_exported import Middleware
 @_exported import Skelton
 @_exported import S4
@@ -32,7 +33,7 @@ public class Slimane {
 
     internal func dispatch(request: Request, stream: Skelton.HTTPStream){
         var request = request
-        request.response = Response(status: .ok, headers: ["data": Header(Time.rfc1123), "server": Header("Slimane")])
+        request.response = Response(status: .ok, headers: ["data": Header(Time().rfc1123), "server": Header("Slimane")])
         
         self.middlewares.chain(to: BasicAsyncResponder { _, result in
             result {
