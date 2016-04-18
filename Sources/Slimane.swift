@@ -32,26 +32,26 @@ public class Slimane {
     }
     
     internal func dispatch(request: Request, stream: Skelton.HTTPStream){
-        var request = request
-        let responder: AsyncResponder
-        if let route = self.router.match(request) {
-            request.params = route.params(request)
-            responder = BasicAsyncResponder { request, result in
-                if request.isIntercepted {
-                    result {
-                        request.response
-                    }
-                    return
+        let responder = BasicAsyncResponder { [unowned self] request, result in
+            if request.isIntercepted {
+                result {
+                    request.response
                 }
+                return
+            }
+            
+            if let route = self.router.match(request) {
+                var request = request
+                request.params = route.params(request)
                 route.handler.respond(to: request) { chainedResponse in
                     result {
                         request.response.merged(try chainedResponse())
                     }
                 }
-            }
-        } else {
-            responder = BasicAsyncResponder { [unowned self] _, result in
-                self.handleError(Error.RouteNotFound(path: request.uri.path ?? "/"), request, stream)
+            } else {
+                result {
+                    self.errorHandler(Error.RouteNotFound(path: request.uri.path ?? "/"))
+                }
             }
         }
         
