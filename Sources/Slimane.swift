@@ -33,37 +33,32 @@ public class Slimane {
 
     internal func dispatch(request: Request, stream: Skelton.HTTPStream){
         var request = request
-        request.response = Response(status: .ok, headers: ["data": Header(Time().rfc1123), "server": Header("Slimane")])
-        
-        self.middlewares.chain(to: BasicAsyncResponder { _, result in
-            result {
-                return request.response
+        let responder: AsyncResponder
+        if let route = self.router.match(request) {
+            request.params = route.params(request)
+            responder = BasicAsyncResponder { request, result in
+                if request.isIntercepted {
+                    result {
+                        request.response
+                    }
+                    return
+                }
+                route.handler.respond(to: request, result: result)
             }
-        })
-        .respond(to: request, result: { [unowned self] in
+        } else {
+            responder = BasicAsyncResponder { [unowned self] _, result in
+                self.handleError(Error.RouteNotFound(path: request.uri.path ?? "/"), request, stream)
+            }
+        }
+        
+        self.middlewares.chain(to: responder).respond(to: request) { [unowned self] in
             do {
                 let response = try $0()
-                if response.isIntercepted {
-                    self.processStream(response, request, stream)
-                } else {
-                    if let route = self.router.match(request) {
-                        request.params = route.params(request)
-                        route.handler.respond(to: request) {
-                            do {
-                                let _response = try $0()
-                                self.processStream(response.merged(_response), request, stream)
-                            } catch {
-                                self.handlerError(error, request, stream)
-                            }
-                        }
-                    } else {
-                        self.handlerError(Error.RouteNotFound(path: request.uri.path ?? "/"), request, stream)
-                    }
-                }
+                self.processStream(response, request, stream)
             } catch {
-                self.handlerError(error, request, stream)
+                self.handleError(error, request, stream)
             }
-        })
+        }
     }
 
     private func processStream(response: Response, _ request: Request, _ stream: Skelton.HTTPStream){
@@ -77,7 +72,7 @@ public class Slimane {
         closeStream(request, stream)
     }
     
-    private func handlerError(error: ErrorProtocol, _ request: Request, _ stream: Skelton.HTTPStream){
+    private func handleError(error: ErrorProtocol, _ request: Request, _ stream: Skelton.HTTPStream){
         let response = errorHandler(error)
         processStream(response, request, stream)
     }

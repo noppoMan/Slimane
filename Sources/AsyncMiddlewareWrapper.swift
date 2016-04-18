@@ -7,7 +7,7 @@
 //
 
 
-internal struct AsyncMiddlewareWrapper: AsyncMiddleware {
+internal struct AsyncMiddlewareFactory: AsyncMiddleware {
     let handler: AsyncMiddleware
     
     init(handler: AsyncMiddleware){
@@ -16,7 +16,7 @@ internal struct AsyncMiddlewareWrapper: AsyncMiddleware {
     
     func respond(to request: Request, chainingTo next: AsyncResponder, result: (Void throws -> Response) -> Void) {
         // Intercept response
-        if request.response.isIntercepted {
+        if request.isIntercepted {
             result {
                 request.response
             }
