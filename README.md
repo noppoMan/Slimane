@@ -11,6 +11,7 @@ Slimane is an express inspired web framework for Swift that works on OSX and Ubu
 - [x] Adopts [Open Swift](https://github.com/open-swift)
 - [ ] Feature/Promise Support
 
+
 ### A Work In Progress
 Slimane is currently in active development.  
 Feel free to contribute, pull requests are welcome!
@@ -20,12 +21,13 @@ It works as a completely asynchronous and the core runtime is created with [libu
 **So Don't stop the event loop with the CPU heavy tasks.**  
 [Guide of working with the cpu heavy tasks](https://github.com/noppoMan/Slimane/wiki/guide-of-working-with-the-cpu-heavy-tasks)
 
+## Slimae Project Page 🎉
+https://github.com/slimane-swift
 
 ## Considering/In developing
 * Streaming Response
 * Deal with Mysql via asynchronous networking
 * Promise Support
-* Various Responder : ex `responder { Render(path: "foo.mustache", variables: [:]) }`
 * Command line interface
 
 ## Getting Started
@@ -35,7 +37,6 @@ It works as a completely asynchronous and the core runtime is created with [libu
 
 ### Documentation
 [Here is Documentation for Slimane.](https://github.com/noppoMan/Slimane/wiki)
-
 
 ## Usage
 
@@ -123,7 +124,7 @@ app.use { req, res, next in
 
 ### Intercept Response
 
-Can intercept response at the middleware with passing any values into the Response.body object.
+Can intercept response at the middleware with passing any values into the Response.body.
 It means **respond soon** and **never reaches** next middleware chains and the route.
 
 ```swift
@@ -149,7 +150,7 @@ app.use(Slimane.Static(root: "/path/to/your/public"))
 
 ## Cookie
 
-#### request.cookie: `Set<Cookie>`
+#### request.cookies: `Set<Cookie>`
 
 request.cookies is Readonly.
 ```swift
@@ -205,12 +206,49 @@ app.get("/") { req, responder
 
 ## Body Data
 
-### JSON
+Register BodyParser into the middleware chains.
+
+#### request.json `Zewo.JSON`
+
+Can get parsed json data throgh the req.json when content-type is `application/json`
+
+```swift
+req.json?["foo"]
+```
+
+#### request.formData `[String: String]`
+
+Can get parsed form data throgh the req.formData when content-type is `application/x-www-form-urlencoded`
+
+```swift
+req.formData?["foo"]
+```
+
+## Views/Template Engines
+* Add the [Render](https://github.com/slimane-swift/Render) module into the Package.swift
+* Add the [MustacheViewEngine](https://github.com/slimane-swift/MustacheViewEngine) module into the Package.swift
+
+Then, You can use render function in Slimane. and pass the render object to the `custome` label for Response initializer.
+
+```swift
+app.get("/render") { req, responder in
+    responder {
+        let render = Render(engine: MustacheViewEngine(templateData: ["foo": "bar"]), path "index")
+        Response(custome: render)
+    }
+}
+```
+
+## Create your own ViewWngine
+
 Getting ready
 
-### Form Data
-Getting ready
+## Working with Suv.Cluster
 
+[See here](https://github.com/noppoMan/Slimane/wiki/working-with-suv.cluster)
+
+## IPC between Master and Worker Processes
+Getting ready
 
 ## Handling Errors
 
