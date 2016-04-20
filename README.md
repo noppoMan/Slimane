@@ -22,6 +22,8 @@ It works as a completely asynchronous and the core runtime is created with [libu
 [Guide of working with the cpu heavy tasks](https://github.com/noppoMan/Slimane/wiki/guide-of-working-with-the-cpu-heavy-tasks)
 
 ## Slimae Project Page 🎉
+Various types of libraries are available from here.
+
 https://github.com/slimane-swift
 
 ## Considering/In developing
@@ -42,8 +44,6 @@ https://github.com/slimane-swift
 
 Starting the application takes slight lines.
 
-More Example? Visit [slimane-example](https://github.com/slimane-swift/slimane-example)
-
 ```swift
 import Slimane
 
@@ -57,6 +57,10 @@ app.get("/") { req, responder in
 
 try! app.listen()
 ```
+
+### Example Project
+
+https://github.com/slimane-swift/slimane-example
 
 ## Routing
 
@@ -201,12 +205,20 @@ app.get("/") { req, responder
         Response()
     }
 }
-
 ```
+
+### Available Session Stores
+* MemoryStore
+* SessionRedisStore
+
 
 ## Body Data
 
 Register BodyParser into the middleware chains.
+
+```swift
+app.use(BodyParser())
+```
 
 #### request.json `Zewo.JSON`
 
@@ -239,16 +251,80 @@ app.get("/render") { req, responder in
 }
 ```
 
-## Create your own ViewWngine
+## Create your own ViewEngine
 
 Getting ready
 
-## Working with Suv.Cluster
+## Working with Cluster
 
-[See here](https://github.com/noppoMan/Slimane/wiki/working-with-suv.cluster)
+A single instance of Slimane runs in a single thread. To take advantage of multi-core systems the user will sometimes want to launch a cluster of Slimane processes to handle the load.
+
+
+Here is an easy example for working with Suv.Cluster
+
+```swift
+// For Cluster app
+if Cluster.isMaster {
+    for _ in 0..<OS.cpuCount {
+        var worker = try! Cluster.fork(silent: false)
+        observeWorker(&worker)
+    }
+
+    try! Slimane().listen()
+} else {
+    let app = Slimane()
+    app.use("/") { req, responder in
+        responder {
+            Response(body: "Hello! I'm \(Process.pid)")
+        }
+    }
+
+    try! app.listen()
+}
+```
 
 ## IPC between Master and Worker Processes
-Getting ready
+
+Inter process message between master and workers
+
+### On Master
+```swift
+var worker = try! Cluster.fork(silent: false)
+
+// Send message to the worker
+worker.send(.Message("message from master"))
+
+// Receive event from the worker
+worker.on { event in
+    if case .Message(let str) = event {
+        print(str)
+    }
+
+    else if case .Online = event {
+        print("Worker: \(worker.id) is online")
+    }
+
+    else if case .Exit(let status) = event {
+        print("Worker: \(worker.id) is dead. status: \(status)")
+        worker = try! Cluster.fork(silent: false)
+        observeWorker(&worker)
+    }
+}
+```
+
+### On Worker
+```swift
+
+// Receive event from the master
+Process.on { event in
+    if case .Message(let str) = event {
+        print(str)
+    }
+}
+
+// Send message to the master
+Process.send(.Message("Hey!"))
+```
 
 ## Handling Errors
 
