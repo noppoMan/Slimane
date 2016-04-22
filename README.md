@@ -9,7 +9,7 @@ Slimane is an express inspired web framework for Swift that works on OSX and Ubu
 - [x] Completely Asynchronous
 - [x] Unopinionated and Minimalist
 - [x] Adopts [Open Swift](https://github.com/open-swift)
-- [ ] Feature/Promise Support
+- [ ] Future/Promise Support
 
 
 ### A Work In Progress
@@ -21,7 +21,7 @@ It works as a completely asynchronous and the core runtime is created with [libu
 **So Don't stop the event loop with the CPU heavy tasks.**  
 [Guide of working with the cpu heavy tasks](https://github.com/noppoMan/Slimane/wiki/guide-of-working-with-the-cpu-heavy-tasks)
 
-## Slimae Project Page 🎉
+## Slimane Project Page 🎉
 Various types of libraries are available from here.
 
 https://github.com/slimane-swift
