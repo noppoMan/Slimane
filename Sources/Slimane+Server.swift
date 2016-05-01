@@ -7,13 +7,13 @@
 //
 
 extension Slimane {
-    public func listen(loop: Loop = Loop.defaultLoop, host: String = "0.0.0.0", port: Int = 3000) throws {
+    public func listen(loop: Loop = Loop.defaultLoop, host: String = "0.0.0.0", port: Int = 3000, errorHandler: ErrorProtocol -> () = { _ in }) throws {
         var server = HTTPServer(loop: loop, ipcEnable: Cluster.isWorker) { [unowned self] in
             do {
                 let (request, stream) = try $0()
                 self.dispatch(request, stream: stream)
             } catch {
-                print(error)
+                errorHandler(error)
             }
         }
 
@@ -27,7 +27,7 @@ extension Slimane {
         try server.listen()
     }
 
-    private func dispatch(request: Request, stream: Skelton.HTTPStream){
+    private func dispatch(_ request: Request, stream: Skelton.HTTPStream){
         let responder = BasicAsyncResponder { [unowned self] request, result in
             if request.isIntercepted {
                 result {
@@ -71,7 +71,7 @@ extension Slimane {
         }
     }
 
-    private func processStream(response: Response, _ request: Request, _ stream: Skelton.HTTPStream){
+    private func processStream(_ response: Response, _ request: Request, _ stream: Skelton.HTTPStream){
         var response = response
 
         response.headers["Date"] = Header(Time().rfc1123)
@@ -89,16 +89,16 @@ extension Slimane {
         closeStream(request, stream)
     }
 
-    private func handleError(error: ErrorProtocol, _ request: Request, _ stream: Skelton.HTTPStream){
+    private func handleError(_ error: ErrorProtocol, _ request: Request, _ stream: Skelton.HTTPStream){
         let response = errorHandler(error)
         processStream(response, request, stream)
     }
 }
 
-private func closeStream(request: Request, _ stream: Skelton.HTTPStream){
+private func closeStream(_ request: Request, _ stream: Skelton.HTTPStream){
     if request.isKeepAlive {
         stream.unref()
     } else {
-        stream.close()
+        do { try stream.close() } catch { }
     }
 }

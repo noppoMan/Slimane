@@ -23,7 +23,7 @@ extension AsyncRoute {
         }
     }
     
-    public func params(request: Request) -> [String: String] {
+    public func params(_ request: Request) -> [String: String] {
         guard let path = request.path else {
             return [:]
         }

@@ -369,7 +369,7 @@ import PackageDescription
 let package = Package(
       name: "MyApp",
       dependencies: [
-          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 2),
+          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 3),
       ]
 )
 ```

@@ -33,7 +33,7 @@ public class Slimane {
     }
 }
 
-func defaultErrorHandler(error: ErrorProtocol) -> Response {
+func defaultErrorHandler(_ error: ErrorProtocol) -> Response {
     let response: Response
     switch error {
     case Error.RouteNotFound:

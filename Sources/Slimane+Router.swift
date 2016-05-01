@@ -7,16 +7,16 @@
 //
 
 extension Slimane {
-    public func use(handler: (Request, Response, MiddlewareChain) -> ()){
+    public func use(_ handler: (Request, Response, MiddlewareChain) -> ()){
         let middleware = BasicMiddleware(handler: handler)
         middlewares.append(middleware)
     }
     
-    public func use(handler: MiddlewareType){
+    public func use(_ handler: MiddlewareType){
         middlewares.append(handler)
     }
     
-    public func use(handler: AsyncMiddleware){
+    public func use(_ handler: AsyncMiddleware){
         // Wrap with basicMiddleware to enable response interceptor
         let middleware = AsyncMiddlewareFactory(handler: handler)
         middlewares.append(middleware)
@@ -24,72 +24,72 @@ extension Slimane {
 }
 
 extension Slimane {
-    public func get(path: String, handler: AsyncRespond){
+    public func get(_ path: String, handler: AsyncRespond){
         let responder = BasicAsyncResponder(handler)
         get(path, handler: responder)
     }
     
-    public func get(path: String, handler: AsyncResponder){
+    public func get(_ path: String, handler: AsyncResponder){
         let route = BasicRouter(method: .get, path: path, handler: handler)
         router.routes.append(route)
     }
 }
 
 extension Slimane {
-    public func options(path: String, handler: AsyncRespond){
+    public func options(_ path: String, handler: AsyncRespond){
         let responder = BasicAsyncResponder(handler)
         options(path, handler: responder)
     }
     
-    public func options(path: String, handler: AsyncResponder){
+    public func options(_ path: String, handler: AsyncResponder){
         let route = BasicRouter(method: .options, path: path, handler: handler)
         router.routes.append(route)
     }
 }
 
 extension Slimane {
-    public func post(path: String, handler: AsyncRespond){
+    public func post(_ path: String, handler: AsyncRespond){
         let responder = BasicAsyncResponder(handler)
         post(path, handler: responder)
     }
     
-    public func post(path: String, handler: AsyncResponder){
+    public func post(_ path: String, handler: AsyncResponder){
         let route = BasicRouter(method: .post, path: path, handler: handler)
         router.routes.append(route)
     }
 }
 
 extension Slimane {
-    public func put(path: String, handler: AsyncRespond){
+    public func put(_ path: String, handler: AsyncRespond){
         let responder = BasicAsyncResponder(handler)
         put(path, handler: responder)
     }
     
-    public func put(path: String, handler: AsyncResponder){
+    public func put(_ path: String, handler: AsyncResponder){
         let route = BasicRouter(method: .put, path: path, handler: handler)
         router.routes.append(route)
     }
 }
 
 extension Slimane {
-    public func patch(path: String, handler: AsyncRespond){
+    public func patch(_ path: String, handler: AsyncRespond){
         let responder = BasicAsyncResponder(handler)
         patch(path, handler: responder)
     }
     
-    public func patch(path: String, handler: AsyncResponder){
+    public func patch(_ path: String, handler: AsyncResponder){
         let route = BasicRouter(method: .patch, path: path, handler: handler)
         router.routes.append(route)
     }
 }
 
 extension Slimane {
-    public func delete(path: String, handler: AsyncRespond){
+    public func delete(_ path: String, handler: AsyncRespond){
         let responder = BasicAsyncResponder(handler)
         delete(path, handler: responder)
     }
     
-    public func delete(path: String, handler: AsyncResponder){
+    public func delete(_ path: String, handler: AsyncResponder){
         let route = BasicRouter(method: .delete, path: path, handler: handler)
         router.routes.append(route)
     }
