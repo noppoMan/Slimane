@@ -14,8 +14,8 @@ extension Slimane {
             self.root = root
         }
 
-        public func respond(req: Request, res: Response, next: MiddlewareChain) {
-            guard let path = req.path , ext = path.split(by: ".").last, mediaType = mediaTypeForFileExtension(ext) else {
+        public func respond(_ req: Request, res: Response, next: MiddlewareChain) {
+            guard let path = req.path , ext = path.split(byString: ".").last, mediaType = mediaType(forFileExtension: ext) else {
                 return next(.Chain(req, res))
             }
 

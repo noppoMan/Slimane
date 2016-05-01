@@ -9,7 +9,7 @@
 public protocol AsyncRouter: AsyncResponder {
     var routes: [AsyncRoute] { get }
     var fallback: AsyncResponder { get }
-    func match(request: Request) -> AsyncRoute?
+    func match(_ request: Request) -> AsyncRoute?
 }
 
 public struct Router: AsyncRouter {
@@ -31,7 +31,7 @@ public struct Router: AsyncRouter {
         return self.respond(to: request, result: result)
     }
     
-    public func match(request: Request) -> AsyncRoute? {
+    public func match(_ request: Request) -> AsyncRoute? {
         guard let path = request.path else {
             return nil
         }
