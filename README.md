@@ -9,7 +9,6 @@ Slimane is an express inspired web framework for Swift that works on OSX and Ubu
 - [x] Completely Asynchronous
 - [x] Unopinionated and Minimalist
 - [x] Adopts [Open Swift](https://github.com/open-swift)
-- [ ] Future/Promise Support
 
 
 ### A Work In Progress
@@ -359,7 +358,8 @@ Synchronous style ErrorHandler will be replaced to asynchronous.
 
 ## Versions
 * 0.1x: https://github.com/noppoMan/Slimane/tree/0.1.2
-* 0.2x: Here. There should be significant changes from 0.1x due to adopting [open-swift](https://github.com/open-swift).
+* 0.2x: There should be significant changes from 0.1x due to adopting [open-swift](https://github.com/open-swift).
+* 0.3x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
 
 ## Package.swift
 
