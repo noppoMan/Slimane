@@ -36,8 +36,8 @@ extension Slimane {
                 return
             }
 
+            var request = request
             if let route = self.router.match(request) {
-                var request = request
                 request.params = route.params(request)
                 route.handler.respond(to: request) { response in
                     result {
@@ -45,6 +45,7 @@ extension Slimane {
                     }
                 }
             } else if self.delegator != nil {
+                request.response.shouldDelegate = true
                 result {
                     request.response
                 }
@@ -66,7 +67,7 @@ extension Slimane {
                             self.handleError(error, request, stream)
                         }
                     }
-                } else if let delegator = self.delegator {
+                } else if let delegator = self.delegator where response.shouldDelegate == true {
                     delegator(request, response, stream)
                 } else {
                     self.processStream(response, request, stream)

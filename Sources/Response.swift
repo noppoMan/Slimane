@@ -37,4 +37,17 @@ extension Response {
         response.body = target.body
         return response
     }
+    
+    var shouldDelegate: Bool {
+        get {
+            if let shouldDelegate = storage["shouldDelegate"] as? Bool {
+                return shouldDelegate
+            }
+            return false
+        }
+        
+        set {
+            storage["shouldDelegate"] = newValue
+        }
+    }
 }
