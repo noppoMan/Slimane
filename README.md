@@ -325,6 +325,38 @@ Process.on { event in
 Process.send(.Message("Hey!"))
 ```
 
+## Respond to the Streaming Content
+
+You can make streaming response with `app.any` route matcher.
+Here is an example for streaming response with [WS](https://github.com/slimane-swift/WS)
+
+```swift
+import WS
+import Slimane
+
+let app = Slimane()
+
+app.any { req, res, stream in
+    if req.uri.path == "/websocket" {
+          // upgrade and get socket
+          WebSocketServer(to: request, with: stream) {
+              do {
+                  let socket = try $0()
+                  socket.onPing {
+                      socket.pong($0)
+                      print($0)
+                  }
+              } catch {
+                  print(error)
+                  stream.close()
+              }
+          }
+    }
+}
+
+try! app.listen()
+```
+
 ## Handling Errors
 
 Easy to override Default Error Handler with replace `app.errorHandler` to your costume handler.
