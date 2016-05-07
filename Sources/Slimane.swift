@@ -25,6 +25,10 @@ public class Slimane {
     public var backlog: UInt = 1024
 
     public var errorHandler: ErrorProtocol -> Response = defaultErrorHandler
+    
+    // TODO This is interim measures for handle streaming response
+    // untill https://github.com/open-swift/S4/pull/52 get merged.
+    internal var delegator: ((Request, Response, HTTPStream) -> ())? = nil
 
     public init(){
         self.router = Router { _, result in

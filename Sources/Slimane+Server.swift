@@ -44,6 +44,10 @@ extension Slimane {
                         request.response.merged(try response())
                     }
                 }
+            } else if self.delegator != nil {
+                result {
+                    request.response
+                }
             } else {
                 result {
                     self.errorHandler(Error.RouteNotFound(path: request.uri.path ?? "/"))
@@ -54,7 +58,7 @@ extension Slimane {
         self.middlewares.chain(to: responder).respond(to: request) { [unowned self] in
             do {
                 let response = try $0()
-                if let responder = response.customeResponder {
+                if let responder = response.customResponder {
                     responder.respond(response) {
                         do {
                             self.processStream(try $0(), request, stream)
@@ -62,6 +66,8 @@ extension Slimane {
                             self.handleError(error, request, stream)
                         }
                     }
+                } else if let delegator = self.delegator {
+                    delegator(request, response, stream)
                 } else {
                     self.processStream(response, request, stream)
                 }
