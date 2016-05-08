@@ -103,9 +103,9 @@ extension Slimane {
 }
 
 private func closeStream(_ request: Request, _ stream: Skelton.HTTPStream){
-    if request.isKeepAlive {
-        stream.unref()
-    } else {
-        do { try stream.close() } catch { }
+    if !request.isKeepAlive {
+        do {
+            try stream.close()
+        } catch { }
     }
 }
