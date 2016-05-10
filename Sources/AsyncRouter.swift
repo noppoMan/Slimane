@@ -27,7 +27,7 @@ public struct Router: AsyncRouter {
         self.respond = respond
     }
     
-    public func respond(to request: Request, result: (Void throws -> Response) -> Void) {
+    public func respond(to request: Request, result: ((Void) throws -> Response) -> Void) {
         return self.respond(to: request, result: result)
     }
     

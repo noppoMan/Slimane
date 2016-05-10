@@ -7,8 +7,8 @@
 //
 
 extension Slimane {
-    public func listen(loop: Loop = Loop.defaultLoop, host: String = "0.0.0.0", port: Int = 3000, errorHandler: ErrorProtocol -> () = { _ in }) throws {
-        var server = HTTPServer(loop: loop, ipcEnable: Cluster.isWorker) { [unowned self] in
+    public func listen(loop: Loop = Loop.defaultLoop, host: String = "0.0.0.0", port: Int = 3000, errorHandler: (ErrorProtocol) -> () = { _ in }) throws {
+        let server = HTTPServer(loop: loop, ipcEnable: Cluster.isWorker) { [unowned self] in
             do {
                 let (request, stream) = try $0()
                 self.dispatch(request, stream: stream)
