@@ -357,6 +357,78 @@ app.any { req, res, stream in
 try! app.listen()
 ```
 
+## Extras
+
+### Working with blocking functions
+We have [QWFuture](https://github.com/slimane-swift/QWFuture) to run blocking functions in a separate thread with future syntax as you know.
+
+It allows potentially any third-party libraries to be used with the event-loop paradigm. For more detail, visit https://github.com/slimane-swift/QWFuture
+
+Here is an 
+
+```swift
+import QWFuture
+
+let future = QWFuture<AnyObject> { (result: (() throws -> AnyObject) -> ()) in
+    result {
+        try db.executeSync("insert into users (id, name) values (1, 'jack')") // blocking
+    }
+}
+
+future.onSuccess {
+    print($0)
+}
+
+future.onFailure {
+    print($0)
+}
+```
+
+### Promise
+We have [Thrush](https://github.com/noppoMan/Thrush) to use Promise apis in the app to make beautiful asynchronous flow.
+Thrush has similar apis to the [ES promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise). 
+For more detail, visit https://github.com/noppoMan/Thrush
+
+Here is a replacement codes of the [Working with blocking functions](working-with-blocking-functions) section with `Promise`
+
+```swift
+import Thrush
+import QWFuture
+
+extension DB {
+    func execute(sql: String) -> Promise<AnyObject> {
+        return Promise<AnyObject> { resolve, reject in
+            let future = QWFuture<AnyObject> { [unowned self] (result: (() throws -> AnyObject) -> ()) in
+                result {
+                    try self.executeSync(sql) // blocking api
+                }
+            }
+            
+            // fulfilled
+            future.onSuccess {
+                resolve($0)
+            }
+            
+            // reject
+            future.onFailuer {
+                reject($0)
+            }
+        }
+    }
+}
+
+DB.ececute().then {
+    print($0)
+}
+.failuer {
+    print($0)
+}
+.finally {
+    print("Done")
+}
+```
+
+
 ## Handling Errors
 
 Easy to override Default Error Handler with replace `app.errorHandler` to your costume handler.
