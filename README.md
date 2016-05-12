@@ -371,7 +371,8 @@ import QWFuture
 
 let future = QWFuture<AnyObject> { (result: (() throws -> AnyObject) -> ()) in
     result {
-        try db.executeSync("insert into users (id, name) values (1, 'jack')") // blocking
+        let db = DB(host: "localhost")
+        retrun try db.executeSync("insert into users (id, name) values (1, 'jack')") // blocking
     }
 }
 
@@ -417,7 +418,9 @@ extension DB {
     }
 }
 
-DB.ececute().then {
+let db = DB(host: "localhost")
+
+db.execute("insert into users (id, name) values (1, 'jack')").then {
     print($0)
 }
 .failuer {
