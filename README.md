@@ -408,7 +408,7 @@ extension DB {
             }
             
             // reject
-            future.onFailuer {
+            future.onFailure {
                 reject($0)
             }
         }
@@ -420,7 +420,7 @@ let db = DB(host: "localhost")
 db.execute("insert into users (id, name) values (1, 'jack')").then {
     print($0)
 }
-.failuer {
+.failure {
     print($0)
 }
 .finally {
@@ -464,6 +464,7 @@ Synchronous style ErrorHandler will be replaced to asynchronous.
 * 0.1x: https://github.com/noppoMan/Slimane/tree/0.1.2
 * 0.2x: There should be significant changes from 0.1x due to adopting [open-swift](https://github.com/open-swift).
 * 0.3x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
+* 0.4x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-05-09-a
 
 ## Package.swift
 
@@ -473,7 +474,7 @@ import PackageDescription
 let package = Package(
       name: "MyApp",
       dependencies: [
-          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 3),
+          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 4),
       ]
 )
 ```
