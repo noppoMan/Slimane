@@ -9,7 +9,11 @@
 let CRLF = "\r\n"
 
 extension Response {
-    var responseData: Data {
+    var serialize: Data {
+        if(body.isAsyncSender) {
+            return (description + CRLF).data
+        }
+        
         var bodyData: Data = Data()
         if case .buffer(let data) = body {
             bodyData += data
@@ -36,18 +40,5 @@ extension Response {
         response.status = target.status
         response.body = target.body
         return response
-    }
-    
-    var shouldDelegate: Bool {
-        get {
-            if let shouldDelegate = storage["shouldDelegate"] as? Bool {
-                return shouldDelegate
-            }
-            return false
-        }
-        
-        set {
-            storage["shouldDelegate"] = newValue
-        }
     }
 }

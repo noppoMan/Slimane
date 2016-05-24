@@ -44,11 +44,6 @@ extension Slimane {
                         request.response.merged(try response())
                     }
                 }
-            } else if self.delegator != nil {
-                request.response.shouldDelegate = true
-                result {
-                    request.response
-                }
             } else {
                 result {
                     self.errorHandler(Error.RouteNotFound(path: request.uri.path ?? "/"))
@@ -67,8 +62,14 @@ extension Slimane {
                             self.handleError(error, request, stream)
                         }
                     }
-                } else if let delegator = self.delegator where response.shouldDelegate == true {
-                    delegator(request, response, stream)
+                } else if case .asyncSender(let closure) =  response.body {
+                    closure(stream) {
+                        do {
+                            try $0()
+                        } catch {
+                            do { try stream.close() } catch {}
+                        }
+                    }
                 } else {
                     self.processStream(response, request, stream)
                 }
@@ -91,8 +92,8 @@ extension Slimane {
         if response.contentLength == 0 && !response.isChunkEncoded {
             response.contentLength = response.bodyLength
         }
-
-        stream.send(response.responseData)
+        
+        stream.send(response.serialize)
         closeStream(request, stream)
     }
 
