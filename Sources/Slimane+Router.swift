@@ -21,10 +21,6 @@ extension Slimane {
         let middleware = AsyncMiddlewareFactory(handler: handler)
         middlewares.append(middleware)
     }
-    
-    public func any(handler: (Request, Response, HTTPStream) -> ()){
-        self.delegator = handler
-    }
 }
 
 extension Slimane {
