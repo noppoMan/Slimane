@@ -324,8 +324,8 @@ Process.send(.Message("Hey!"))
 
 ## Respond to the Streaming Content
 
-You can make streaming response with `app.any` route matcher.
-Here is an example for streaming response with [WS](https://github.com/slimane-swift/WS)
+You can respond to the streaming content with `Body.asyncSender`
+Here is an example for websocket response with [WS](https://github.com/slimane-swift/WS)
 
 ```swift
 import WS
@@ -333,21 +333,26 @@ import Slimane
 
 let app = Slimane()
 
-app.any { req, res, stream in
-    if req.uri.path == "/websocket" {
-          // upgrade and get socket
-          WebSocketServer(to: request, with: stream) {
-              do {
-                  let socket = try $0()
-                  socket.onPing {
-                      socket.pong($0)
-                      print($0)
-                  }
-              } catch {
-                  print(error)
-                  stream.close()
-              }
-          }
+app.get("/chat") { req, responder in
+    responder {
+        var response = Response()
+        response.body = .asyncSender({ stream, _ in
+                // upgrade and get socket
+                WebSocketServer(to: req, with: stream) {
+                    do {
+                        let socket = try $0()
+                        socket.onPing {
+                            socket.pong($0)
+                            print($0)
+                        }
+                    } catch {
+                        print(error)
+                        stream.close()
+                    }
+                }
+            }
+        })
+        return response
     }
 }
 
