@@ -20,6 +20,13 @@ extension Slimane {
         server.setNoDelay = self.setNodelay
         server.keepAliveTimeout = self.keepAliveTimeout
         server.backlog = self.backlog
+        
+        if self.middlewares.count == 0 {
+            // Register dummy middleware to suppress error
+            self.use { req, res, next in
+                next(.Chain(req, res))
+            }
+        }
 
         if Cluster.isMaster {
             try server.bind(Address(host: host, port: port))
