@@ -9,9 +9,12 @@
 extension Slimane {
     public struct Static: MiddlewareType {
         let root: String
+        
+        let ignoreNotFoundInterruption: Bool
 
-        public init(root: String){
+        public init(root: String, ignoreNotFoundInterruption: Bool = false){
             self.root = root
+            self.ignoreNotFoundInterruption = ignoreNotFoundInterruption
         }
 
         public func respond(_ req: Request, res: Response, next: MiddlewareChain) {
@@ -27,6 +30,9 @@ extension Slimane {
                     res.body = .buffer(buffer.data)
                     next(.Chain(req, res))
                 case .Error(_):
+                    if self.ignoreNotFoundInterruption {
+                        return next(.Chain(req, res))
+                    }
                     next(.Error(Error.ResourceNotFound("\(path) is not found")))
                 }
             }
