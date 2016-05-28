@@ -9,6 +9,12 @@
 let CRLF = "\r\n"
 
 extension Response {
+    
+    public init(redirect location: String) {
+        let headers: Headers = ["Location": Header(location)]
+        self.init(status: .movedPermanently, headers: headers, body: [])
+    }
+    
     var serialize: Data {
         if(body.isAsyncSender) {
             return (description + CRLF).data
