@@ -28,7 +28,7 @@ extension Slimane {
                     var res = res
                     res.contentType = mediaType
                     res.body = .buffer(buffer.data)
-                    next(.Chain(req, res))
+                    next(.Intercept(req, res))
                 case .Error(_):
                     if self.ignoreNotFoundInterruption {
                         return next(.Chain(req, res))
