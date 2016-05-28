@@ -96,7 +96,7 @@ app.use(AccessLogMiddleware())
 ```
 
 ### AsyncMiddleware
-Can pass the Open-Swift's AsyncMiddleware confirming Middleware
+It's able to accept Open-Swift's AsyncMiddleware confirming Middleware 
 
 ```swift
 struct AccessLogMiddleware: AsyncMiddleware {
@@ -124,14 +124,12 @@ app.use { req, res, next in
 
 ### Intercept Response
 
-Can intercept response at the middleware with passing any values into the Response.body.
-It means **respond soon** and **never reaches** next middleware chains and the route.
+You sometimes want to intercept `Response` in the middleware.(For example, serving static files, authentication etc..) Under the those cases, You can intercept it with `MiddlewareChainResult.Intercept` like the following.
 
 ```swift
 app.use { req, res, next in
-    var res = res
-    res.body("I'm intercepted at the middleware")
-    next(.Chain(req, res))
+    // Respond to the content soon and it's never reached the next chains and the route.
+    next(.Intercept(req, res))
 }
 ```
 
