@@ -96,7 +96,7 @@ app.use(AccessLogMiddleware())
 ```
 
 ### AsyncMiddleware
-It's able to accept Open-Swift's AsyncMiddleware confirming Middleware 
+It's able to accept Open-Swift's AsyncMiddleware confirming Middleware
 
 ```swift
 struct AccessLogMiddleware: AsyncMiddleware {
@@ -364,7 +364,7 @@ We have [QWFuture](https://github.com/slimane-swift/QWFuture) to run blocking fu
 
 It allows potentially any third-party libraries to be used with the event-loop paradigm. For more detail, visit https://github.com/slimane-swift/QWFuture
 
-Here is an 
+Here is an
 
 ```swift
 import QWFuture
@@ -387,7 +387,7 @@ future.onFailure {
 
 ### Promise
 We have [Thrush](https://github.com/noppoMan/Thrush) to use Promise apis in the app to make beautiful asynchronous flow.
-Thrush has similar apis to the [ES promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise). 
+Thrush has similar apis to the [ES promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 For more detail, visit https://github.com/noppoMan/Thrush
 
 Here is a replacement codes of the [Working with blocking functions](working-with-blocking-functions) section with `Promise`
@@ -404,12 +404,12 @@ extension DB {
                     try self.executeSync(sql) // blocking api
                 }
             }
-            
+
             // fulfilled
             future.onSuccess {
                 resolve($0)
             }
-            
+
             // reject
             future.onFailure {
                 reject($0)
@@ -466,8 +466,10 @@ Synchronous style ErrorHandler will be replaced to asynchronous.
 ## Versions
 * 0.1x: https://github.com/noppoMan/Slimane/tree/0.1.2
 * 0.2x: There should be significant changes from 0.1x due to adopting [open-swift](https://github.com/open-swift).
-* 0.3x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
-* 0.4x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-05-09-a
+* 0.3x: There should be interface changes from 0.2x
+* 0.4x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
+* 0.5x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-05-09-a
+* 0.6x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-05-31-a
 
 ## Package.swift
 
@@ -477,7 +479,7 @@ import PackageDescription
 let package = Package(
       name: "MyApp",
       dependencies: [
-          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 4),
+          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 6),
       ]
 )
 ```
