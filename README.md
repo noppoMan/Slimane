@@ -26,7 +26,7 @@ Various types of libraries are available from here.
 https://github.com/slimane-swift
 
 ## Community
-The entire Slimane code base is licensed under MIT. By contributing to Slimane you are contributing to an open and engaged community of brilliant Swift programmers. Join us on [Slack](https://slimane-swift.slack.com) to get to know us!
+The entire Slimane code base is licensed under MIT. By contributing to Slimane you are contributing to an open and engaged community of brilliant Swift programmers. Join us on [Slack](https://slimane-swift-slackin.herokuapp.com/) to get to know us!
 
 ## Getting Started
 
