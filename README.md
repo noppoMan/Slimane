@@ -62,9 +62,9 @@ https://github.com/slimane-swift/slimane-example
 
 ```swift
 app.get("/articles/:id") { req, responder in
-    responder {
-        Response(body: "Article ID is: \(req.params["id"]!)")
-    }
+      responder {
+          Response(body: "Article ID is: \(req.params["id"]!)")
+      }
 }
 ```
 
@@ -78,30 +78,34 @@ app.get("/articles/:id") { req, responder in
 
 
 ## Middlewares
-Middleware is functions that have access to the http request, the http response, and the next function in the application' s request-response cycle. We offers 3 types of registration ways for that.
+Middleware is functions that have access to the http request, the http response, and the next function in the application' s request-response cycle.
 
-See more to visit https://github.com/slimane-swift/Middleware
+### Handy
 
-### MiddlewareType
 ```swift
-
-struct AccessLogMiddleware: MiddlewareType {
-    func respond(req: Request, res: Response, next: MiddlewareChain) {
-        print("[\(Suv.Time())] \(req.uri.path ?? "/")")
-        next(.Chain(req, res))
-    }
+app.use { req, next, result in
+    print("[\(Suv.Time())] \(req.uri.path ?? "/")")
+    next.respond(to: req, result: result)
 }
-
-app.use(AccessLogMiddleware())
 ```
 
 ### AsyncMiddleware
-It's able to accept Open-Swift's AsyncMiddleware confirming Middleware
 
 ```swift
-struct AccessLogMiddleware: AsyncMiddleware {
+struct FooMiddleware: AsyncMiddleware {
     func respond(to request: Request, chainingTo next: AsyncResponder, result: (Void throws -> Response) -> Void) {
-        print("[\(Suv.Time())] \(request.path ?? "/")")
+        do {
+            var request = request
+            let foo = try throwableFoo()
+            request.foo = foo
+            next.respond(to: request, result: result) // chain next middleware
+        } catch {
+            // respond to the content soon.
+            result {
+                Response(status: .internalServerError, body: "\(error)")
+            }
+        }
+
         next.respond(to: request) { response in
             result {
                 try response()
@@ -110,27 +114,7 @@ struct AccessLogMiddleware: AsyncMiddleware {
     }
 }
 
-app.use(AccessLogMiddleware())
-```
-
-### Handy
-
-```swift
-app.use { req, res, next in
-    print("[\(Suv.Time())] \(req.uri.path ?? "/")")
-    next(.Chain(req, res))
-}
-```
-
-### Intercept Response
-
-You sometimes want to intercept `Response` in the middleware.(For example, serving static files, authentication etc..) Under the those cases, You can intercept it with `MiddlewareChainResult.Intercept` like the following.
-
-```swift
-app.use { req, res, next in
-    // Respond to the content soon and it's never reached the next chains and the route.
-    next(.Intercept(req, res))
-}
+app.use(FooMiddleware())
 ```
 
 ## Request/Response
@@ -331,27 +315,18 @@ import Slimane
 
 let app = Slimane()
 
-app.get("/chat") { req, responder in
-    responder {
-        var response = Response()
-        response.body = .asyncSender({ stream, _ in
-                // upgrade and get socket
-                WebSocketServer(to: req, with: stream) {
-                    do {
-                        let socket = try $0()
-                        socket.onPing {
-                            socket.pong($0)
-                            print($0)
-                        }
-                    } catch {
-                        print(error)
-                        stream.close()
-                    }
-                }
-            }
-        })
-        return response
+let wsServer = WebSocketServer { socket, request in
+    socket.onText { text in
+        print(text)
     }
+}
+
+app.use(wsServer)
+
+app.get("/") { req, responder in
+  responder {
+      Response(body: "html text here....")
+  }
 }
 
 try! app.listen()
@@ -390,7 +365,7 @@ We have [Thrush](https://github.com/noppoMan/Thrush) to use Promise apis in the 
 Thrush has similar apis to the [ES promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 For more detail, visit https://github.com/noppoMan/Thrush
 
-Here is a replacement codes of the [Working with blocking functions](working-with-blocking-functions) section with `Promise`
+Here is a replacement codes of the [Working with blocking functions](#working-with-blocking-functions) section with `Promise`
 
 ```swift
 import Thrush
@@ -459,26 +434,15 @@ func myErrorHandler(error: ErrorProtocol) -> Response {
 try! app.listen()
 ```
 
-#### Note
-Synchronous style ErrorHandler will be replaced to asynchronous.
-
-
-## Versions
-* 0.1x: https://github.com/noppoMan/Slimane/tree/0.1.2
-* 0.2x: There should be significant changes from 0.1x due to adopting [open-swift](https://github.com/open-swift).
-* 0.3x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
-* 0.4x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-05-09-a
-* 0.5x: There should be internal changes for working with swift-DEVELOPMENT-SNAPSHOT-2016-05-31-a
-
 ## Package.swift
 
 ```swift
 import PackageDescription
 
 let package = Package(
-      name: "MyApp",
+      name: "MySlimaneApp",
       dependencies: [
-          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 5),
+          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 6),
       ]
 )
 ```

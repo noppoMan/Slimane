@@ -2,3 +2,4 @@
 Packages
 Xcode
 Sources/main.swift
+*.xcodeproj

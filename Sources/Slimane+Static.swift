@@ -7,7 +7,7 @@
 //
 
 extension Slimane {
-    public struct Static: MiddlewareType {
+    public struct Static: AsyncMiddleware {
         let root: String
         
         let ignoreNotFoundInterruption: Bool
@@ -16,24 +16,27 @@ extension Slimane {
             self.root = root
             self.ignoreNotFoundInterruption = ignoreNotFoundInterruption
         }
-
-        public func respond(_ req: Request, res: Response, next: MiddlewareChain) {
-            guard let path = req.path , ext = path.split(byString: ".").last, mediaType = mediaType(forFileExtension: ext) else {
-                return next(.Chain(req, res))
+        
+        public func respond(to request: Request, chainingTo next: AsyncResponder, result: ((Void) throws -> Response) -> Void) {
+            guard let path = request.path , ext = path.split(byString: ".").last, mediaType = mediaType(forFileExtension: ext) else {
+                return next.respond(to: request, result: result)
             }
-
-            FS.readFile(root + path) {
-                switch($0) {
-                case .Success(let buffer):
-                    var res = res
-                    res.contentType = mediaType
-                    res.body = .buffer(buffer.data)
-                    next(.Intercept(req, res))
-                case .Error(_):
-                    if self.ignoreNotFoundInterruption {
-                        return next(.Chain(req, res))
+            
+            FS.readFile(root + path) { getData in
+                do {
+                    var response = Response(body: try getData())
+                    response.contentType = mediaType
+                    result {
+                        response
                     }
-                    next(.Error(Error.ResourceNotFound("\(path) is not found")))
+                } catch {
+                    if self.ignoreNotFoundInterruption {
+                        next.respond(to: request, result: result)
+                    } else {
+                        result {
+                            throw error
+                        }
+                    }
                 }
             }
         }

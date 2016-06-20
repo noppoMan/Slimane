@@ -6,8 +6,6 @@
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
 
-let storageKeyForResponse = __SLIMANE_INTERNAL_STORAGE_KEY + "Response"
-
 extension Request {
     public var params: [String: String] {
         get {
@@ -23,13 +21,7 @@ extension Request {
         }
     }
     
-    internal var response: Response {
-        get {
-            return self.storage[storageKeyForResponse] as! Response
-        }
-        
-        set {
-            self.storage[storageKeyForResponse] = newValue
-        }
+    public var shouldKeepAlive: Bool {
+        return connection?.lowercased() == "keep-alive"
     }
 }

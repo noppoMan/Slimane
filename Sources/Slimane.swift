@@ -7,11 +7,11 @@
 //
 
 @_exported import Time
-@_exported import Middleware
 @_exported import Skelton
 @_exported import S4
 @_exported import C7
 @_exported import AsyncResponderConvertible
+@_exported import AsyncHTTPSerializer
 
 public class Slimane {
     internal var middlewares: [AsyncMiddleware] = []
