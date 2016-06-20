@@ -47,7 +47,7 @@ let app = Slimane()
 
 app.get("/") { req, responder in
     responder {
-      Response(body: "Welcome Slimane!")
+        Response(body: "Welcome Slimane!")
     }
 }
 
@@ -62,9 +62,9 @@ https://github.com/slimane-swift/slimane-example
 
 ```swift
 app.get("/articles/:id") { req, responder in
-      responder {
-          Response(body: "Article ID is: \(req.params["id"]!)")
-      }
+    responder {
+        Response(body: "Article ID is: \(req.params["id"]!)")
+    }
 }
 ```
 
@@ -98,17 +98,11 @@ struct FooMiddleware: AsyncMiddleware {
             var request = request
             let foo = try throwableFoo()
             request.foo = foo
-            next.respond(to: request, result: result) // chain next middleware
+            next.respond(to: request, result: result) // Chain the next middleware
         } catch {
-            // respond to the content soon.
+            // Respond to the content immediately.
             result {
                 Response(status: .internalServerError, body: "\(error)")
-            }
-        }
-
-        next.respond(to: request) { response in
-            result {
-                try response()
             }
         }
     }
@@ -274,15 +268,15 @@ worker.send(.Message("message from master"))
 
 // Receive event from the worker
 worker.on { event in
-    if case .Message(let str) = event {
+    if case .message(let str) = event {
         print(str)
     }
 
-    else if case .Online = event {
+    else if case .online = event {
         print("Worker: \(worker.id) is online")
     }
 
-    else if case .Exit(let status) = event {
+    else if case .exit(let status) = event {
         print("Worker: \(worker.id) is dead. status: \(status)")
         worker = try! Cluster.fork(silent: false)
         observeWorker(&worker)
@@ -295,13 +289,13 @@ worker.on { event in
 
 // Receive event from the master
 Process.on { event in
-    if case .Message(let str) = event {
+    if case .message(let str) = event {
         print(str)
     }
 }
 
 // Send message to the master
-Process.send(.Message("Hey!"))
+Process.send(.message("Hey!"))
 ```
 
 ## Respond to the Streaming Content
@@ -324,9 +318,9 @@ let wsServer = WebSocketServer { socket, request in
 app.use(wsServer)
 
 app.get("/") { req, responder in
-  responder {
-      Response(body: "html text here....")
-  }
+    responder {
+        Response(body: "html text here....")
+    }
 }
 
 try! app.listen()
@@ -420,9 +414,9 @@ app.errorHandler = myErrorHandler
 func myErrorHandler(error: ErrorProtocol) -> Response {
     let response: Response
     switch error {
-        case Costume.InvalidPrivilegeError
+        case Costume.invalidPrivilegeError
             response = Response(status: .forbidden, body: "Forbidden")
-        case Costume.ResourceNotFoundError(let name)
+        case Costume.resourceNotFoundError(let name)
             response = Response(status: .notFound, body: "\(name) is not found")
         default:
             response = Response(status: .badRequest, body: "\(error)")
