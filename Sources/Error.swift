@@ -7,22 +7,22 @@
 //
 
 public enum Error: ErrorProtocol, CustomStringConvertible {
-    case RouteNotFound(path: String)
-    case ResourceNotFound(String)
-    case InvalidArgument(String)
-    case Unexpected(String)
+    case routeNotFound(path: String)
+    case resourceNotFound(String)
+    case invalidArgument(String)
+    case unexpected(String)
 }
 
 extension Error {
     public var description: String {
         switch(self) {
-        case .RouteNotFound(let path):
+        case .routeNotFound(let path):
             return "\(path) is not found"
-        case .ResourceNotFound(let resourceName):
+        case .resourceNotFound(let resourceName):
             return "The resource \(resourceName) is not found"
-        case InvalidArgument(let message):
+        case invalidArgument(let message):
             return message
-        case Unexpected(let message):
+        case unexpected(let message):
             return message
         }
     }

@@ -46,7 +46,7 @@ extension Slimane {
                 }
             } else {
                 result {
-                    self.errorHandler(Error.RouteNotFound(path: request.uri.path ?? "/"))
+                    self.errorHandler(Error.routeNotFound(path: request.uri.path ?? "/"))
                 }
             }
         }
