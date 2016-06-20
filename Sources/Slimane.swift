@@ -36,9 +36,9 @@ public class Slimane {
 func defaultErrorHandler(_ error: ErrorProtocol) -> Response {
     let response: Response
     switch error {
-    case Error.RouteNotFound:
+    case Error.routeNotFound:
         response = Response(status: .notFound, body: "\(error)")
-    case Error.ResourceNotFound:
+    case Error.resourceNotFound:
         response = Response(status: .notFound, body: "\(error)")
     default:
         response = Response(status: .badRequest, body: "\(error)")
