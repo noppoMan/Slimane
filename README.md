@@ -54,9 +54,16 @@ app.get("/") { req, responder in
 try! app.listen()
 ```
 
-### Example Project
+### Try Fullstack Example
 
-https://github.com/slimane-swift/slimane-example
+You can try a full stack example app with [Slimane-Fullstack](https://github.com/noppoMan/Slimane-Fullstack)
+
+1. Clone it (First need to setup your machine according to install guide)
+2. `cd Slimane-Fullstack`
+3. `make debug`
+4. `.build/debug/Example`
+
+**That's it!**
 
 ## Routing
 
