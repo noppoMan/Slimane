@@ -6,25 +6,11 @@
 //  Copyright © 2016 MikeTOKYO. All rights reserved.
 //
 
-let CRLF = "\r\n"
-
 extension Response {
     
     public init(redirect location: String) {
-        let headers: Headers = ["Location": Header(location)]
+        let headers: Headers = ["Location": location]
         self.init(status: .movedPermanently, headers: headers, body: [])
-    }
-    
-    var serialize: Data {
-        if(body.isAsyncSender) {
-            return (description + CRLF).data
-        }
-        
-        var bodyData: Data = Data()
-        if case .buffer(let data) = body {
-            bodyData += data
-        }
-        return (description + CRLF).data + bodyData
     }
     
     var bodyLength: Int {
@@ -34,17 +20,7 @@ extension Response {
         return 0
     }
     
-    func merged(_ target: Response) -> Response {
-        var response = self
-        for (k,v) in target.headers {
-            response.headers[k] = v
-        }
-        for (k,v) in target.storage {
-            response.storage[k] = v
-        }
-        response.version = target.version
-        response.status = target.status
-        response.body = target.body
-        return response
+    public var shouldKeepAlive: Bool {
+        return connection?.lowercased() == "keep-alive"
     }
 }
