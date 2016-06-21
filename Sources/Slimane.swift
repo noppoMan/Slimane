@@ -12,6 +12,7 @@
 @_exported import C7
 @_exported import AsyncResponderConvertible
 @_exported import AsyncHTTPSerializer
+@_exported import HTTPUpgradeAsync
 
 public class Slimane {
     internal var middlewares: [AsyncMiddleware] = []

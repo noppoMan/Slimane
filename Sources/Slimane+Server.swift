@@ -91,12 +91,21 @@ private func processStream(_ response: Response, _ request: Request, _ stream: H
         response.contentLength = response.bodyLength
     }
     
-    AsyncHTTPSerializer.ResponseSerializer().serialize(response, to: stream)
+    AsyncHTTPSerializer.ResponseSerializer().serialize(response, to: stream) { result in
+        do {
+            try result()
+            if let didUpgradeAsync = response.didUpgradeAsync {
+                didUpgradeAsync(request, stream)
+            }
+        } catch {
+            // noop
+        }
+    }
     closeStreamIfNeeded(response, stream)
 }
 
 private func closeStreamIfNeeded(_ response: Response, _ stream: HTTPStream){
-    if !response.shouldKeepAlive {
+    if !response.shouldKeepAlive && response.didUpgradeAsync == nil {
         do { try stream.close() } catch {}
     }
 }
