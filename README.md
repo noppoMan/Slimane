@@ -54,14 +54,17 @@ app.get("/") { req, responder in
 try! app.listen()
 ```
 
-### Try Fullstack Example
+### Generate a new Slimane App via slimane-cli(Requires Node.js v4 or later)
+```sh
+npm i -g slimane-cli
+```
 
-You can try a full stack example app with [Slimane-Fullstack](https://github.com/noppoMan/Slimane-Fullstack)
-
-1. Clone it (First need to setup your machine according to install guide)
-2. `cd Slimane-Fullstack`
-3. `make debug`
-4. `.build/debug/Example`
+```sh
+slimane new YourAppName
+cd YourAppName
+slimane build
+slimane run
+```
 
 **That's it!**
 
