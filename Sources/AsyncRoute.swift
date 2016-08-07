@@ -14,6 +14,7 @@ public protocol AsyncRoute: AsyncResponder {
     var paramKeys: [String] { get }
     var method: S4.Method { get }
     var handler: AsyncResponder { get }
+    var middlewares: [AsyncMiddleware] { get }
 }
 
 extension AsyncRoute {
@@ -46,8 +47,9 @@ public struct BasicRouter: AsyncRoute {
     public let regexp: Regex
     public let method: S4.Method
     public let handler: AsyncResponder
+    public let middlewares: [AsyncMiddleware]
     
-    public init(method: S4.Method, path: String, handler: AsyncResponder) {
+    public init(method: S4.Method, path: String, middlewares: [AsyncMiddleware] = [], handler: AsyncResponder) {
         let parameterRegularExpression = try! Regex(pattern: ":([[:alnum:]_]+)")
         let pattern = parameterRegularExpression.replace(path, withTemplate: "([[:alnum:]_-]+)")
         
@@ -55,6 +57,7 @@ public struct BasicRouter: AsyncRoute {
         self.path = path
         self.regexp = try! Regex(pattern: "^" + pattern + "$")
         self.paramKeys = parameterRegularExpression.groups(path)
+        self.middlewares = middlewares
         self.handler = handler
     }
 }

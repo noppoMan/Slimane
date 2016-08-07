@@ -39,9 +39,9 @@ extension Slimane {
             if let route = self.router.match(request) {
                 var request = request
                 request.params = route.params(request)
-                route.handler.respond(to: request) { response in
+                route.middlewares.chain(to: route.handler).respond(to: request) { getResponse in
                     result {
-                        try response()
+                        try getResponse()
                     }
                 }
             } else {
@@ -51,9 +51,9 @@ extension Slimane {
             }
         }
         
-        self.middlewares.chain(to: responder).respond(to: request) { [unowned self] in
+        self.middlewares.chain(to: responder).respond(to: request) { [unowned self] getResponse in
             do {
-                let response = try $0()
+                let response = try getResponse()
                 if let responder = response.customResponder {
                     responder.respond(response) { getResponse in
                         do {
