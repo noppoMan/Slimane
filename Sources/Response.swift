@@ -9,7 +9,7 @@
 extension Response {
     
     public init(redirect location: String) {
-        let headers: Headers = ["Location": location]
+        let headers: Headers = ["Location": location, "Cache-Control": "max-age=0, no-cache, no-store"]
         self.init(status: .movedPermanently, headers: headers, body: [])
     }
     
