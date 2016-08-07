@@ -21,7 +21,11 @@ extension Request {
         }
     }
     
-    public var shouldKeepAlive: Bool {
-        return connection?.lowercased() == "keep-alive"
+    public var isKeepAlive: Bool {
+        if version.minor == 0 {
+            return connection?.lowercased().index(of: "keep-alive") != nil
+        }
+        
+        return connection?.lowercased().index(of: "close") == nil
     }
 }
