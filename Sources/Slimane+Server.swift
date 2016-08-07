@@ -83,10 +83,6 @@ private func processStream(_ response: Response, _ request: Request, _ stream: H
     
     response.headers["Server"] = "Slimane"
     
-    if response.headers["Connection"] == nil {
-        response.headers["Connection"] = request.shouldKeepAlive ? "Keep-Alive" : "Close"
-    }
-    
     if response.contentLength == 0 && !response.isChunkEncoded {
         response.contentLength = response.bodyLength
     }
@@ -98,14 +94,11 @@ private func processStream(_ response: Response, _ request: Request, _ stream: H
                 didUpgradeAsync(request, stream)
             }
         } catch {
-            // noop
+            do { try stream.close() } catch {}
         }
     }
-    closeStreamIfNeeded(response, stream)
-}
-
-private func closeStreamIfNeeded(_ response: Response, _ stream: HTTPStream){
-    if !response.shouldKeepAlive && response.didUpgradeAsync == nil {
+    
+    if !request.isKeepAlive && response.didUpgradeAsync == nil {
         do { try stream.close() } catch {}
     }
 }
