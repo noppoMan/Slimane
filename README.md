@@ -6,19 +6,12 @@
 Slimane is an express inspired web framework for Swift that works on OSX and Ubuntu.
 
 
-- [x] Completely Asynchronous
+- [x] 100% Asynchronous
 - [x] Unopinionated and Minimalist
 - [x] Adopts [Open Swift](https://github.com/open-swift)
 
-
-### A Work In Progress
-Slimane is currently in active development.  
-Feel free to contribute, pull requests are welcome!
-
-### Attension
-It works as a completely asynchronous and the core runtime is created with [libuv](https://github.com/libuv/libuv).  
-**So Don't stop the event loop with the CPU heavy tasks.**  
-[Guide of working with the cpu heavy tasks](https://github.com/noppoMan/Slimane/wiki/guide-of-working-with-the-cpu-heavy-tasks)
+### Programming Guid
+Getting ready
 
 ## Slimane Project Page 🎉
 Various types of libraries are available from here.
@@ -31,10 +24,10 @@ The entire Slimane code base is licensed under MIT. By contributing to Slimane y
 ## Getting Started
 
 ### Install Guide
-[Here is install guides for each operating systems](https://github.com/noppoMan/Slimane/wiki/Install-Guide)
+[Here is an install guides for each operating systems](https://github.com/noppoMan/Slimane/wiki/Install-Guide)
 
 ### Documentation
-[Here is Documentation for Slimane.](https://github.com/noppoMan/Slimane/wiki)
+[Here is a Documentation for Slimane.](https://github.com/noppoMan/Slimane/wiki)
 
 ## Usage
 
@@ -222,13 +215,13 @@ req.formData?["foo"]
 * Add the [Render](https://github.com/slimane-swift/Render) module into the Package.swift
 * Add the [MustacheViewEngine](https://github.com/slimane-swift/MustacheViewEngine) module into the Package.swift
 
-Then, You can use render function in Slimane. and pass the render object to the `custome` label for Response initializer.
+Then, You can use render function in Slimane. and pass the render object to the `custom` label for Response initializer.
 
 ```swift
 app.get("/render") { req, responder in
     responder {
         let render = Render(engine: MustacheViewEngine(templateData: ["foo": "bar"]), path "index")
-        Response(custome: render)
+        Response(custom: render)
     }
 }
 ```
@@ -248,8 +241,7 @@ Here is an easy example for working with Suv.Cluster
 // For Cluster app
 if Cluster.isMaster {
     for _ in 0..<OS.cpuCount {
-        var worker = try! Cluster.fork(silent: false)
-        observeWorker(&worker)
+        let worker = try! Cluster.fork(silent: false)
     }
 
     try! Slimane().listen()
@@ -277,7 +269,7 @@ var worker = try! Cluster.fork(silent: false)
 worker.send(.Message("message from master"))
 
 // Receive event from the worker
-worker.on { event in
+worker.onIPC { event in
     if case .message(let str) = event {
         print(str)
     }
@@ -288,8 +280,8 @@ worker.on { event in
 
     else if case .exit(let status) = event {
         print("Worker: \(worker.id) is dead. status: \(status)")
-        worker = try! Cluster.fork(silent: false)
-        observeWorker(&worker)
+        let worker = try! Cluster.fork(silent: false)
+        observeWorker(worker)
     }
 }
 ```
@@ -298,7 +290,7 @@ worker.on { event in
 ```swift
 
 // Receive event from the master
-Process.on { event in
+Process.onIPC { event in
     if case .message(let str) = event {
         print(str)
     }
@@ -402,7 +394,7 @@ let db = DB(host: "localhost")
 db.execute("insert into users (id, name) values (1, 'jack')").then {
     print($0)
 }
-.failure {
+.`catch` {
     print($0)
 }
 .finally {
@@ -446,7 +438,7 @@ import PackageDescription
 let package = Package(
       name: "MySlimaneApp",
       dependencies: [
-          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 6),
+          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 7),
       ]
 )
 ```
