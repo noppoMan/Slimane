@@ -25,7 +25,7 @@ public class Slimane {
 
     public var backlog: UInt = 1024
 
-    public var errorHandler: (ErrorProtocol) -> Response = defaultErrorHandler
+    public var errorHandler: (Error) -> Response = defaultErrorHandler
 
     public init(){
         self.router = Router { _, result in
@@ -34,15 +34,15 @@ public class Slimane {
     }
 }
 
-func defaultErrorHandler(_ error: ErrorProtocol) -> Response {
+func defaultErrorHandler(_ error: Error) -> Response {
     let response: Response
     switch error {
-    case Error.routeNotFound:
+    case RoutingError.routeNotFound:
         response = Response(status: .notFound, body: "\(error)")
-    case Error.resourceNotFound:
+    case RoutingError.resourceNotFound:
         response = Response(status: .notFound, body: "\(error)")
     default:
-        response = Response(status: .badRequest, body: "\(error)")
+        response = Response(status: .internalServerError, body: "\(error)")
     }
     return response
 }

@@ -6,6 +6,8 @@
 //
 //
 
+import CLibUv
+
 extension Slimane {
     public struct Static: AsyncMiddleware {
         let root: String
@@ -17,8 +19,8 @@ extension Slimane {
             self.ignoreNotFoundInterruption = ignoreNotFoundInterruption
         }
         
-        public func respond(to request: Request, chainingTo next: AsyncResponder, result: ((Void) throws -> Response) -> Void) {
-            guard let path = request.path , ext = path.split(byString: ".").last, mediaType = mediaType(forFileExtension: ext) else {
+        public func respond(to request: Request, chainingTo next: AsyncResponder, result: @escaping ((Void) throws -> Response) -> Void) {
+            guard let path = request.path , let ext = path.split(separator: ".").last, let mediaType = mediaType(forFileExtension: ext) else {
                 return next.respond(to: request, result: result)
             }
             
@@ -29,13 +31,24 @@ extension Slimane {
                     result {
                         response
                     }
+                } catch UVError.rawUvError(let code) {
+                    let e: Error
+                    if code == -2 {
+                        e = RoutingError.resourceNotFound(path: path)
+                    } else {
+                        e = UVError.rawUvError(code: code)
+                    }
+                    
+                    result {
+                        throw e
+                    }
                 } catch {
                     if self.ignoreNotFoundInterruption {
-                        next.respond(to: request, result: result)
-                    } else {
-                        result {
-                            throw error
-                        }
+                        return next.respond(to: request, result: result)
+                    }
+                    
+                    result {
+                        throw error
                     }
                 }
             }

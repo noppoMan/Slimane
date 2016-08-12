@@ -18,10 +18,10 @@ endif
 all: release
 
 debug:
-	$(SWIFT) build -v $(BUILDOPTS)
+	$(SWIFT) build $(BUILDOPTS)
 
 release:
-	$(SWIFT) build -v $(BUILDOPTS) --configuration=release
+	$(SWIFT) build $(BUILDOPTS) --configuration=release
 
 test:
-	$(SWIFT) test
+	$(SWIFT) test $(BUILDOPTS)

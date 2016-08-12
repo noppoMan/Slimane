@@ -8,7 +8,6 @@
 
 public protocol AsyncRouter: AsyncResponder {
     var routes: [AsyncRoute] { get }
-    var fallback: AsyncResponder { get }
     func match(_ request: Request) -> AsyncRoute?
 }
 
@@ -17,17 +16,11 @@ public struct Router: AsyncRouter {
     
     public var routes: [AsyncRoute] = []
     
-    public var fallback: AsyncResponder = BasicAsyncResponder { _, result in
-        result {
-            Response(status: .methodNotAllowed)
-        }
-    }
-    
     public init(_ respond: AsyncRespond) {
         self.respond = respond
     }
     
-    public func respond(to request: Request, result: ((Void) throws -> Response) -> Void) {
+    public func respond(to request: Request, result: @escaping ((Void) throws -> Response) -> Void) {
         return self.respond(to: request, result: result)
     }
     
