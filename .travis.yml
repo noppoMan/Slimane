@@ -1,0 +1,17 @@
+os:
+  - linux
+  - osx
+language: generic
+sudo: required
+dist: trusty
+osx_image: xcode8
+install:
+  - git clone https://github.com/libuv/libuv.git && cd libuv && sudo sh autogen.sh && sudo ./configure && sudo make && sudo make install
+
+  - cd $TRAVIS_BUILD_DIR
+
+  - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/02090c7ede5a637b76e6df1710e83cd0bbe7dcdf/swiftenv-install.sh)"
+script:
+  - make debug
+  - make
+  - make test

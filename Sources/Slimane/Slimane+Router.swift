@@ -6,6 +6,22 @@
 //
 //
 
+enum RoutingError: Error, CustomStringConvertible {
+    case resourceNotFound(path: String)
+    case routeNotFound(path: String)
+}
+
+extension RoutingError {
+    public var description: String {
+        switch(self) {
+        case .routeNotFound(let path):
+            return "\(path) is not found"
+        case .resourceNotFound(let resourceName):
+            return "\(resourceName) is not found"
+        }
+    }
+}
+
 extension Slimane {
     public func use(_ handler: AsyncMiddlewareHandler){
         middlewares.append(BasicAsyncMiddleware(handler))

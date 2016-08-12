@@ -7,7 +7,8 @@
 //
 
 extension Slimane {
-    public func listen(loop: Loop = Loop.defaultLoop, host: String = "0.0.0.0", port: Int = 3000, errorHandler: (ErrorProtocol) -> () = { _ in }) throws {
+    
+    public func listen(loop: Loop = Loop.defaultLoop, host: String = "0.0.0.0", port: Int = 3000, errorHandler: @escaping (Error) -> () = { _ in }) throws {
         let server = Skelton(loop: loop, ipcEnable: Cluster.isWorker) { [unowned self] in
             do {
                 let (request, stream) = try $0()
@@ -20,13 +21,6 @@ extension Slimane {
         server.setNoDelay = self.setNodelay
         server.keepAliveTimeout = self.keepAliveTimeout
         server.backlog = self.backlog
-        
-        if self.middlewares.count == 0 {
-            // Register dummy middleware to suppress error
-            self.use { request, next, result in
-                next.respond(to: request, result: result)
-            }
-        }
 
         if Cluster.isMaster {
             try server.bind(host: host, port: port)
@@ -39,19 +33,15 @@ extension Slimane {
             if let route = self.router.match(request) {
                 var request = request
                 request.params = route.params(request)
-                route.middlewares.chain(to: route.handler).respond(to: request) { getResponse in
-                    result {
-                        try getResponse()
-                    }
-                }
+                route.middlewares.chain(to: route.handler).respond(to: request, result: result)
             } else {
                 result {
-                    self.errorHandler(Error.routeNotFound(path: request.uri.path ?? "/"))
+                    self.errorHandler(RoutingError.routeNotFound(path: request.uri.path ?? "/"))
                 }
             }
         }
         
-        self.middlewares.chain(to: responder).respond(to: request) { [unowned self] getResponse in
+        self.middlewares.chain(to: responder).respond(to: request) { [unowned self] getResponse in  
             do {
                 let response = try getResponse()
                 if let responder = response.customResponder {
@@ -71,7 +61,7 @@ extension Slimane {
         }
     }
     
-    private func handleError(_ error: ErrorProtocol, _ request: Request, _ stream: HTTPStream){
+    private func handleError(_ error: Error, _ request: Request, _ stream: HTTPStream){
         processStream(errorHandler(error), request, stream)
     }
 }
@@ -87,7 +77,7 @@ private func processStream(_ response: Response, _ request: Request, _ stream: H
         response.contentLength = response.bodyLength
     }
     
-    AsyncHTTPSerializer.ResponseSerializer().serialize(response, to: stream) { result in
+    AsyncHTTPSerializer.ResponseSerializer(stream: stream).serialize(response) { result in
         do {
             try result()
             if let didUpgradeAsync = response.didUpgradeAsync {
