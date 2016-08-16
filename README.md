@@ -136,7 +136,7 @@ request.cookies is Readonly.
 req.cookies["session-id"]
 ```
 
-**Cookie** is declared in S4. See more to visit https://github.com/open-swift/S4
+**Cookie** is declared in HTTP.Cookie. See more to visit https://github.com/slimane-swift/HTTP
 
 #### response.cookies: `Set<AttributedCookie>`
 
@@ -146,7 +146,7 @@ response.cookies is Writable.
 let setCookie = AttributedCookie(....)
 res.cookies = Set<setCookie>
 ```
-**AttributedCookie** is declared in S4. See more to visit https://github.com/open-swift/S4
+**AttributedCookie** is declared in HTTP.AttributedCookie. See more to visit https://github.com/slimane-swift/HTTP
 
 
 ## Session
@@ -438,7 +438,7 @@ import PackageDescription
 let package = Package(
       name: "MySlimaneApp",
       dependencies: [
-          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 7),
+          .Package(url: "https://github.com/noppoMan/Slimane.git", majorVersion: 0, minor: 8),
       ]
 )
 ```
