@@ -8,8 +8,22 @@
 
 import CLibUv
 
+public enum StaticMiddlewareError: Error, CustomStringConvertible {
+    case resourceNotFound(path: String)
+}
+
+extension StaticMiddlewareError {
+    public var description: String {
+        switch(self) {
+        case .resourceNotFound(let resourceName):
+            return "\(resourceName) is not found"
+        }
+    }
+}
+
 extension Slimane {
     public struct Static: AsyncMiddleware {
+
         let root: String
         
         let ignoreNotFoundInterruption: Bool
@@ -34,7 +48,7 @@ extension Slimane {
                 } catch UVError.rawUvError(let code) {
                     let e: Error
                     if code == -2 {
-                        e = RoutingError.resourceNotFound(path: path)
+                        e = StaticMiddlewareError.resourceNotFound(path: path)
                     } else {
                         e = UVError.rawUvError(code: code)
                     }
