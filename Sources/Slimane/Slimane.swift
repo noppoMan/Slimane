@@ -39,7 +39,7 @@ func defaultErrorHandler(_ error: Error) -> Response {
     switch error {
     case RoutingError.routeNotFound:
         response = Response(status: .notFound, body: "\(error)")
-    case RoutingError.resourceNotFound:
+    case StaticMiddlewareError.resourceNotFound:
         response = Response(status: .notFound, body: "\(error)")
     default:
         response = Response(status: .internalServerError, body: "\(error)")

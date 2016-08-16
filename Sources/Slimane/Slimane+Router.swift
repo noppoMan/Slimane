@@ -6,8 +6,7 @@
 //
 //
 
-enum RoutingError: Error, CustomStringConvertible {
-    case resourceNotFound(path: String)
+public enum RoutingError: Error, CustomStringConvertible {
     case routeNotFound(path: String)
 }
 
@@ -16,8 +15,6 @@ extension RoutingError {
         switch(self) {
         case .routeNotFound(let path):
             return "\(path) is not found"
-        case .resourceNotFound(let resourceName):
-            return "\(resourceName) is not found"
         }
     }
 }
