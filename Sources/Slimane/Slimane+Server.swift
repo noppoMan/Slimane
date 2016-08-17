@@ -73,7 +73,7 @@ private func processStream(_ response: Response, _ request: Request, _ stream: H
     
     response.headers["Server"] = "Slimane"
     
-    if response.contentLength == 0 && !response.isChunkEncoded {
+    if response.contentLength == nil && !response.isChunkEncoded {
         response.contentLength = response.bodyLength
     }
     
