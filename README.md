@@ -240,7 +240,7 @@ Here is an easy example for working with Suv.Cluster
 ```swift
 // For Cluster app
 if Cluster.isMaster {
-    for _ in 0..<OS.cpuCount {
+    for _ in 0..<OS.cpus.count() {
         let worker = try! Cluster.fork(silent: false)
     }
 
@@ -331,29 +331,29 @@ try! app.listen()
 ## Extras
 
 ### Working with blocking functions
-We have [QWFuture](https://github.com/slimane-swift/QWFuture) to run blocking functions in a separate thread with future syntax as you know.
+We have `Process.qwork` to run blocking functions in a separated thread.
 
-It allows potentially any third-party libraries to be used with the event-loop paradigm. For more detail, visit https://github.com/slimane-swift/QWFuture
-
-Here is an
+It allows potentially any third-party libraries to be used with the event-loop paradigm.
 
 ```swift
-import QWFuture
-
-let future = QWFuture<AnyObject> { (result: (() throws -> AnyObject) -> ()) in
-    result {
-        let db = DB(host: "localhost")
-        retrun try db.executeSync("insert into users (id, name) values (1, 'jack')") // blocking
+let onThread = { ctx in
+    do 
+        ctx.storage["result"] = try blokingOperation()
+    } catch {
+        ctx.storage["error"] = error
     }
 }
 
-future.onSuccess {
-    print($0)
+let onFinish = { ctx in
+    if let error = ctx.storage["error"] as? Error {
+        print(error)
+        return
+    }
+    
+    print(ctx.storage["result"])
 }
 
-future.onFailure {
-    print($0)
-}
+Process.qwork(onThread: onThread, onFinish: onFinish)
 ```
 
 ### Promise
@@ -365,26 +365,28 @@ Here is a replacement codes of the [Working with blocking functions](#working-wi
 
 ```swift
 import Thrush
-import QWFuture
 
 extension DB {
-    func execute(sql: String) -> Promise<AnyObject> {
-        return Promise<AnyObject> { resolve, reject in
-            let future = QWFuture<AnyObject> { [unowned self] (result: (() throws -> AnyObject) -> ()) in
-                result {
-                    try self.executeSync(sql) // blocking api
+    func execute(sql: String) -> Promise<FooResult> {
+        return Promise<FooResult> { resolve, reject in
+            let onThread = { ctx in
+                do 
+                    ctx.storage["result"] = try blockingSqlQuery(sql)
+                } catch {
+                    ctx.storage["error"] = error
                 }
             }
-
-            // fulfilled
-            future.onSuccess {
-                resolve($0)
+            
+            let onFinish = { ctx in
+                if let error = ctx.storage["error"] as? Error {
+                    reject(error)
+                    return
+                }
+                
+                resolve(ctx.storage["result"] as! FooResult)
             }
-
-            // reject
-            future.onFailure {
-                reject($0)
-            }
+            
+            Process.qwork(onThread: onThread, onFinish: onFinish)
         }
     }
 }
