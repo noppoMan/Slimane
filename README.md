@@ -240,16 +240,16 @@ Here is an easy example for working with Suv.Cluster
 ```swift
 // For Cluster app
 if Cluster.isMaster {
-    for _ in 0..<OS.cpus.count() {
+    for _ in 0..<OS.cpus().count {
         let worker = try! Cluster.fork(silent: false)
     }
 
     try! Slimane().listen()
 } else {
     let app = Slimane()
-    app.use("/") { req, responder in
+    app.get("/") { req, responder in
         responder {
-            Response(body: "Hello! I'm \(Process.pid)")
+            Response(body: "Hello! I'm \(CommandLine.pid)")
         }
     }
 
