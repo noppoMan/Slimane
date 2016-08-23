@@ -18,6 +18,8 @@ public class Slimane {
     internal var middlewares: [AsyncMiddleware] = []
 
     internal var router: Router
+    
+    internal var server: Skelton? = nil
 
     public var setNodelay = false
 

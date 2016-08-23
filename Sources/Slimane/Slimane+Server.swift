@@ -8,8 +8,22 @@
 
 extension Slimane {
     
+    public var clientsConnected: Int {
+        return server?.clientsConnected ?? 0
+    }
+    
+    public func closeAllClientsConnection() {
+        guard let sockets = self.server?.socketsConnected else {
+            return
+        }
+        
+        for socket in sockets {
+            do { try socket.close() } catch { }
+        }
+    }
+    
     public func listen(loop: Loop = Loop.defaultLoop, host: String = "0.0.0.0", port: Int = 3000, errorHandler: @escaping (Error) -> () = { _ in }) throws {
-        let server = Skelton(loop: loop, ipcEnable: Cluster.isWorker) { [unowned self] in
+        self.server = Skelton(loop: loop, ipcEnable: Cluster.isWorker) { [unowned self] in
             do {
                 let (request, stream) = try $0()
                 self.dispatch(request, stream: stream)
@@ -18,14 +32,14 @@ extension Slimane {
             }
         }
 
-        server.setNoDelay = self.setNodelay
-        server.keepAliveTimeout = self.keepAliveTimeout
-        server.backlog = self.backlog
+        server?.setNoDelay = self.setNodelay
+        server?.keepAliveTimeout = self.keepAliveTimeout
+        server?.backlog = self.backlog
 
         if Cluster.isMaster {
-            try server.bind(host: host, port: port)
+            try server?.bind(host: host, port: port)
         }
-        try server.listen()
+        try server?.listen()
     }
 
     private func dispatch(_ request: Request, stream: HTTPStream){
