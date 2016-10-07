@@ -1,29 +1,23 @@
 //
-//  AsyncRoute.swift
+//  Route.swift
 //  Slimane
 //
-//  Created by Yuki Takei on 4/16/16.
+//  Created by Yuki Takei on 2016/10/05.
 //
 //
 
-import POSIXRegex
-
-public protocol AsyncRoute: AsyncResponder {
+protocol Route {
     var path: String { get }
     var regexp: Regex { get }
     var paramKeys: [String] { get }
-    var method: S4.Method { get }
-    var handler: AsyncResponder { get }
-    var middlewares: [AsyncMiddleware] { get }
+    var method: HTTPCore.Method { get }
+    var handler: Respond { get }
+    var middlewares: [Middleware] { get }
+    
+    func respond(_ request: Request, _ response: Response, _ chainer: (Chainer) -> Void)
 }
 
-extension AsyncRoute {
-    public func respond(to request: Request, result: @escaping ((Void) throws -> Response) -> Void) {
-        result {
-            Response(status: .ok)
-        }
-    }
-    
+extension Route {
     public func params(_ request: Request) -> [String: String] {
         guard let path = request.path else {
             return [:]
@@ -41,15 +35,15 @@ extension AsyncRoute {
     }
 }
 
-public struct BasicRouter: AsyncRoute {
-    public let path: String
-    public let paramKeys: [String]
-    public let regexp: Regex
-    public let method: S4.Method
-    public let handler: AsyncResponder
-    public let middlewares: [AsyncMiddleware]
+struct BasicRoute: Route {
+    let path: String
+    let regexp: Regex
+    let method: HTTPCore.Method
+    let handler: Respond
+    let paramKeys: [String]
+    let middlewares: [Middleware]
     
-    public init(method: S4.Method, path: String, middlewares: [AsyncMiddleware] = [], handler: AsyncResponder) {
+    init(method: HTTPCore.Method, path: String, middlewares: [Middleware] = [], handler: @escaping Respond){
         let parameterRegularExpression = try! Regex(pattern: ":([[:alnum:]_]+)")
         let pattern = parameterRegularExpression.replace(path, withTemplate: "([[:alnum:]_-]+)")
         
@@ -60,5 +54,8 @@ public struct BasicRouter: AsyncRoute {
         self.middlewares = middlewares
         self.handler = handler
     }
+    
+    public func respond(_ request: Request, _ response: Response, _ chainer: (Chainer) -> Void)  {
+        self.handler(request, response, chainer)
+    }
 }
-
