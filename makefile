@@ -25,3 +25,6 @@ release:
 
 test:
 	$(SWIFT) test $(BUILDOPTS)
+
+xcode:
+	$(SWIFT) package generate-xcodeproj $(BUILDOPTS)
