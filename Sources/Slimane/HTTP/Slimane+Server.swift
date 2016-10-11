@@ -98,7 +98,7 @@ extension Slimane {
     
     private func respond(_ request: HTTPCore.Request, _ response: HTTPCore.Response, _ stream: DuplexStream){
         if let responder = response.customResponder {
-            responder.respond(request: request, response: response) { [unowned self] chainer in
+            responder.respond(request, response) { [unowned self] chainer in
                 switch chainer {
                 case .respond(let response):
                     self.processStream(request, response, stream)
