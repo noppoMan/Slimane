@@ -6,15 +6,13 @@
 //
 //
 
-protocol Route {
+protocol Route: Responder {
     var path: String { get }
     var regexp: Regex { get }
     var paramKeys: [String] { get }
     var method: HTTPCore.Method { get }
     var handler: Respond { get }
     var middlewares: [Middleware] { get }
-    
-    func respond(_ request: Request, _ response: Response, _ chainer: (Chainer) -> Void)
 }
 
 extension Route {
@@ -55,7 +53,7 @@ struct BasicRoute: Route {
         self.handler = handler
     }
     
-    public func respond(_ request: Request, _ response: Response, _ chainer: (Chainer) -> Void)  {
-        self.handler(request, response, chainer)
+    func respond(_ request: Request, _ response: Response, _ responder: @escaping (Chainer) -> Void) {
+        self.handler(request, response, responder)
     }
 }
